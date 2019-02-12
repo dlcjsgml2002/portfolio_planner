@@ -1,0 +1,45 @@
+CREATE USER 'portfolio_lch'@'%';
+ALTER USER 'portfolio_lch'@'%'
+IDENTIFIED BY 'rootroot' ;
+GRANT Alter ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Create ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Create view ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Delete ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Drop ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Grant option ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Index ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Insert ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT References ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Select ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Show view ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Trigger ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Update ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Alter routine ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Create routine ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Create temporary tables ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Execute ON portfolio_planner.* TO 'portfolio_lch'@'%';
+GRANT Lock tables ON portfolio_planner.* TO 'portfolio_lch'@'%';
+FLUSH PRIVILEGES;
+
+CREATE USER 'portfolio_lch'@'localhost';
+ALTER USER 'portfolio_lch'@'localhost'
+IDENTIFIED BY 'rootroot' ;
+GRANT Alter ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Create ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Create view ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Delete ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Drop ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Grant option ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Index ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Insert ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT References ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Select ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Show view ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Trigger ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Update ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Alter routine ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Create routine ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Create temporary tables ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Execute ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+GRANT Lock tables ON portfolio_planner.* TO 'portfolio_lch'@'localhost';
+FLUSH PRIVILEGES;
