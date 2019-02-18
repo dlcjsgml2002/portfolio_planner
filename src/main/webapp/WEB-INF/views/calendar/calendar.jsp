@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	th, td {
+		width: 100px;
+		height: 100px;
+	}
+</style>
 <script>
 	var today = new Date();
 	var oneDay = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -25,13 +31,13 @@
 	document.write("<table>");
 	document.write("<caption>" + year + "." + (today.getMonth() + 1) + "</caption>");
 	document.write("<tr>");
-	document.write("<td>일</td>");
-	document.write("<td>월</td>");
-	document.write("<td>화</td>");
-	document.write("<td>수</td>");
-	document.write("<td>목</td>");
-	document.write("<td>금</td>");
-	document.write("<td>토</td>");
+	document.write("<th>일</th>");
+	document.write("<th>월</th>");
+	document.write("<th>화</th>");
+	document.write("<th>수</th>");
+	document.write("<th>목</th>");
+	document.write("<th>금</th>");
+	document.write("<th>토</th>");
 	document.write("</tr>");
 	
 	var num = 1;
@@ -44,7 +50,7 @@
 			} else if(num > lastDay) {
 				document.write("<td></td>");
 			} else {
-				document.write("<td>" + num + "</td>");
+				document.write("<td><a href='#'>" + num + "</a></td>");
 				num++;
 			}
 		}
@@ -54,18 +60,5 @@
 </script>
 </head>
 <body>
- 	<table>
- 		<tr>
- 			<th>일</th>
- 			<th>월</th>
- 			<th>화</th>
- 			<th>수</th>
- 			<th>목</th>
- 			<th>금</th>
- 			<th>토</th>
- 		</tr>
- 		<tr>
- 		</tr>
- 	</table>
 </body>
 </html>

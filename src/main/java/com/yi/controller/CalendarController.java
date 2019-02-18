@@ -25,11 +25,11 @@ public class CalendarController {
 	@RequestMapping(value = "calendar", method = RequestMethod.GET)
 	public String calandarGet(Model model) {
 		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR); // 년
-		int month = cal.get(Calendar.MONTH) + 1; // 월
-		int date = cal.get(Calendar.DATE); // 일
-		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1; // 요일
-		Date today = new Date(); // 오늘
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int date = cal.get(Calendar.DATE);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		Date today = new Date();
 		int last = cal.getActualMaximum(Calendar.DATE);
 
 		Map<String, Object> map = new HashMap<>();

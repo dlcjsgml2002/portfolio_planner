@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TestController {
 	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 	
-	@RequestMapping(value = "loginForm", method = RequestMethod.GET)
-	public String loginForm() {
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String loginGet() {
+
+		return "loginForm";
+	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String loginPost() {
 
 		return "loginForm";
 	}
@@ -20,12 +26,6 @@ public class TestController {
 	public String test() {
 
 		return "test";
-	}
-	
-	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String main() {
-
-		return "main";
 	}
 	
 }

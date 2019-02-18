@@ -10,13 +10,9 @@ public class Board {
 	private Date regDate;
 	private int views;
 
-	public Board() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Board() {}
 
 	public Board(int bno, String title, String comment, Member member, Date regDate, int views) {
-		super();
 		this.bno = bno;
 		this.title = title;
 		this.comment = comment;

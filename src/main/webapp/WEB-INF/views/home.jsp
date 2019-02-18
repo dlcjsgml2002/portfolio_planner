@@ -10,63 +10,16 @@
 		margin: 0;
 		padding: 0;
 	}
-
+	
 	ul {
 		list-style: none;
 	}
-
+	
 	header {
 		width: 100%;
 		height: 20%;
 		text-align: center;
-	}
-	
-	header p {
-		color: black;
-	}
-
-	section {
-		width: 100%;
-		height: 70%;
-	}
-	
-	footer {
-		width: 100%;
-		height: 10%;
-	}
-	
-	#menu ul {
-		width: 100%;
-	}
-	
-	#menu ul li {
-		display: inline;
-		float: left;
-		width: 25%;
-	}
-	
-	* {
-		padding: 0;
-		margin: 0;
-	}
-	
-	body {
-		background-color: #f2f0f0;
-	}
-	
-	
-	/* ---------- header ---------- */
-	header {
-		width: 960px;
-		height: 80px;
-		margin: 0 auto;
 		position: relative;
-	}
-	
-	header img {
-		position: absolute;
-		bottom: 10px;
-		left: 10px;
 	}
 	
 	header #menu {
@@ -105,13 +58,13 @@
 	}
 	
 	nav > ul {
-		width: 960px;
+		width: 100%;
 		list-style: none;
 		margin: 0 auto;
 	}
 	
 	nav > ul > li {
-		width: 20%;
+		width: 25%;
 		float: left;
 		display: inline;
 		text-align: center;
@@ -145,54 +98,62 @@
 	}
 	
 	section {
-		width: 960px;
-		margin: 0 auto;
-		clear: both;
-		text-align: center;
-		margin-top: 20px;
-	}
-	
-	section img {
-		margin-top: 20px;
 		width: 100%;
+		height: 70%;
+		clear: both;
 	}
 	
+	section #banner {
+		text-align: center;
+	}
+	
+	footer {
+		width: 100%;
+		height: 10%;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
-	<header>	
-		<div>
-			<a>홈</a>
-			<button>로그인 / 회원가입</button>
-		</div>
-		
+	<header>
 		<div id="menu">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/info/info">소개</a></li>
-				<li><a href="${pageContext.request.contextPath}/calendar/cal">내 일정관리</a></li>
-				<li><a href="#">내 정보관리</a></li>
-				<li>게시판
-					<ul>
-						<li><a href="${pageContext.request.contextPath}/board/list">공지사항</a></li>
-						<li><a href="${pageContext.request.contextPath}/board/pinpoint">자유게시판</a></li>
-					</ul>
-				</li>
+				<li><a href="#">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
 			</ul>
 		</div>
 	</header>
+	
+	<nav>
+		<ul>
+			<li><a href="#">소개</a>
+				<ul class="submenu">
+					<li><a href="#">작심삼일이란?</a></li>
+				</ul>
+			</li>
+			<li><a href="#">내 일정 확인</a>
+			</li>
+			<li><a href="#">내 정보 확인</a>
+			</li>
+			<li><a href="#">커뮤니티</a>
+				<ul class="submenu">
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">자유 게시판</a></li>
+					<li><a href="#">챌린지</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
 	
 	<section>
 		<div id="banner">
 			<h3>당신과 함께하는 든든한 운동 파트너</h3>
 			<h1>작심삼일</h1>
 		</div>
-		<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
 	</section>
 	
 	<footer>
-		<div>
-			<p>이 사이트의 저작권은 나에게 있습니다. 저작권은 힘을 만듭니다. 그리고 난 힘찬 기분이 듭니다.</p>
-		</div>
+		<p>이 사이트의 저작권은 나에게 있습니다. 저작권은 힘을 만듭니다. 그리고 난 힘찬 기분이 듭니다.</p>
 	</footer>
 </body>
 </html>
