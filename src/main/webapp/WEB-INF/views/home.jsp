@@ -117,6 +117,9 @@
 <body>
 	<header>
 		<div id="menu">
+			
+			<h3>당신과 함께하는 든든한 운동 파트너</h3>
+			<h1>작심삼일</h1>
 			<ul>
 				<li><a href="#">로그인</a></li>
 				<li><a href="#">회원가입</a></li>
@@ -147,8 +150,6 @@
 	
 	<section>
 		<div id="banner">
-			<h3>당신과 함께하는 든든한 운동 파트너</h3>
-			<h1>작심삼일</h1>
 		</div>
 	</section>
 	
