@@ -5,7 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/include.css">
 </head>
 <body>
-</body>
-</html>
+	<header>
+		<div id="banner">
+			<h3>당신과 함께하는 든든한 운동 파트너</h3>
+			<h1>작심삼일</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="#">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
+			</ul>
+		</div>
+	</header>
+	
+	<nav>
+		<ul>
+			<li><a href="#">소개</a>
+				<ul class="submenu">
+					<li><a href="#">작심삼일이란?</a></li>
+				</ul>
+			</li>
+			<li><a href="#">내 일정 확인</a>
+			</li>
+			<li><a href="#">내 정보 확인</a>
+			</li>
+			<li><a href="#">커뮤니티</a>
+				<ul class="submenu">
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">자유 게시판</a></li>
+					<li><a href="#">챌린지</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>

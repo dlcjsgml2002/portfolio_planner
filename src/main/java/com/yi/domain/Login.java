@@ -1,6 +1,6 @@
 package com.yi.domain;
 
-public class LoginDTO {
+public class Login {
 	private String userid;
 	private String username;
 

@@ -17,16 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CalendarController {
 	private static final Logger logger = LoggerFactory.getLogger(CalendarController.class);
 
-	@RequestMapping(value = "cal", method = RequestMethod.GET)
-	public String calandar() {
-		return "/calendar/cal";
-	}
-
 	@RequestMapping(value = "calendar", method = RequestMethod.GET)
 	public String calandarGet(Model model) {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
+		int month = cal.get(Calendar.MONTH);
 		int date = cal.get(Calendar.DATE);
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1;
 		Date today = new Date();

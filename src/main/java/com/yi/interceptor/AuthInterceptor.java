@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yi.domain.LoginDTO;
+import com.yi.domain.Login;
 
 public class AuthInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
@@ -18,7 +18,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		LoginDTO dto = (LoginDTO) session.getAttribute("login");
+		Login dto = (Login) session.getAttribute("login");
 		
 		if (dto != null) {
 			logger.info("session : " + dto);

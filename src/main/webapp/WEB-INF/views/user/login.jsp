@@ -7,11 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login" method="post">
-		<label>아이뒤</label>
-		<input type="text" id="id">
-		<label>비밀번호</label>
-		<input type="password" id="pw">
-	</form>
+	<div>
+		<form action="login" method="post">
+			<label>아이뒤</label>
+			<input type="text" id="id">
+			<label>비밀번호</label>
+			<input type="password" id="pw">
+			
+			<a>찾아보자</a>
+			<input type="submit" value="로그인">
+			<a>회원가입하기</a>
+		</form>
+	</div>
 </body>
 </html>
