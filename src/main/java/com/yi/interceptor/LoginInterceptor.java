@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yi.controller.UserController;
-import com.yi.domain.LoginDTO;
+import com.yi.domain.Login;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	
@@ -30,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("------- postHandle");
 		
-		LoginDTO vo = (LoginDTO) modelAndView.getModel().get("memberVO");
+		Login vo = (Login) modelAndView.getModel().get("memberVO");
 		
 		if (vo != null) {
 			HttpSession session = request.getSession();

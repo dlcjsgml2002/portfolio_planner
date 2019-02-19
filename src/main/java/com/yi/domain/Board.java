@@ -1,6 +1,7 @@
 package com.yi.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Board {
 	private int bno;
@@ -9,16 +10,18 @@ public class Board {
 	private Member member;
 	private Date regDate;
 	private int views;
+	private List<String> files;
 
 	public Board() {}
 
-	public Board(int bno, String title, String comment, Member member, Date regDate, int views) {
+	public Board(int bno, String title, String comment, Member member, Date regDate, int views, List<String> files) {
 		this.bno = bno;
 		this.title = title;
 		this.comment = comment;
 		this.member = member;
 		this.regDate = regDate;
 		this.views = views;
+		this.files = files;
 	}
 
 	public int getBno() {
@@ -69,10 +72,18 @@ public class Board {
 		this.views = views;
 	}
 
+	public List<String> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<String> files) {
+		this.files = files;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Board [bno=%s, title=%s, comment=%s, member=%s, regDate=%s, views=%s]", bno, title,
-				comment, member, regDate, views);
+		return String.format("Board [bno=%s, title=%s, comment=%s, member=%s, regDate=%s, views=%s, files=%s]", bno,
+				title, comment, member, regDate, views, files);
 	}
 
 }
