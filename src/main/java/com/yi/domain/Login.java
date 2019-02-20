@@ -1,28 +1,28 @@
 package com.yi.domain;
 
 public class Login {
-	private String userid;
-	private String username;
+	private String id;
+	private String name;
 
-	public String getUserid() {
-		return userid;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("LoginDTO [userid=%s, username=%s]", userid, username);
+		return String.format("Login [id=%s, name=%s]", id, name);
 	}
 
 }

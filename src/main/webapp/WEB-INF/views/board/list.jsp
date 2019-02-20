@@ -2,13 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="../include/header.jsp"%>
 	<section class="container">
 	<div class="row">
 		<div class="col-sm-12">
@@ -72,16 +66,16 @@
 											<ul class="pagination">
 												<c:if test="${pageMaker.prev }">
 													<li><a
-														href="${pageContext.request.contextPath }/sboard/list?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+														href="${pageContext.request.contextPath }/board/list?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 												</c:if>
 												<c:forEach begin="${pageMaker.startPage }"
 													end="${pageMaker.endPage }" var="idx">
 													<li ${pageMaker.cri.page == idx ? 'class="active"' : '' }>
-														<a href="${pageContext.request.contextPath }/sboard/list?page=${idx }&searchType=${cri.searchType }&keyword=${cri.keyword }">${idx }</a>
+														<a href="${pageContext.request.contextPath }/board/list?page=${idx }&searchType=${cri.searchType }&keyword=${cri.keyword }">${idx }</a>
 													</li>
 												</c:forEach>
 												<c:if test="${pageMaker.next }">
-													<li><a href="${pageContext.request.contextPath }/sboard/list?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
+													<li><a href="${pageContext.request.contextPath }/board/list?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
 												</c:if>
 											</ul>
 										</div>
@@ -100,13 +94,12 @@
 		$("#btnSearch").click(function(){
 			var searchType = $("select[name='searchType']").val();
 			var keyword = $("#keywordInput").val();
-			location.href = "${pageContext.request.contextPath}/sboard/list?searchType=" + searchType + "&keyword=" + keyword;
+			location.href = "${pageContext.request.contextPath}/board/list?searchType=" + searchType + "&keyword=" + keyword;
 		})
 		
 		$("#btnNewBoard").click(function(){
-			location.href = "${pageContext.request.contextPath}/sboard/register";
+			location.href = "${pageContext.request.contextPath}/board/register";
 		})
 	})
 </script>
-</body>
-</html>
+<%@ include file="../include/footer.jsp"%>
