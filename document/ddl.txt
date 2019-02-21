@@ -1,3 +1,191 @@
+-- 작심삼일
+DROP SCHEMA IF EXISTS portfolio_planner;
+
+-- 작심삼일
+CREATE SCHEMA portfolio_planner;
+
+-- 회원
+CREATE TABLE portfolio_planner.member (
+	mno   INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
+	id    VARCHAR(100) NOT NULL COMMENT '아이디', -- 아이디
+	pw    VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
+	name  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
+	email VARCHAR(100) NOT NULL COMMENT '이메일', -- 이메일
+	admin BOOLEAN      NULL     COMMENT '관리자' -- 관리자
+)
+COMMENT '회원';
+
+-- 회원
+ALTER TABLE portfolio_planner.member
+	ADD CONSTRAINT PK_member -- 회원 기본키
+		PRIMARY KEY (
+			mno -- 회원번호
+		);
+
+ALTER TABLE portfolio_planner.member
+	MODIFY COLUMN mno INT(10) NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+
+-- 게시판
+CREATE TABLE portfolio_planner.board (
+	bno     INT(10)      NOT NULL COMMENT '게시판번호', -- 게시판번호
+	mno     INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
+	title   VARCHAR(100) NOT NULL COMMENT '제목', -- 제목
+	comment TEXT         NOT NULL COMMENT '내용', -- 내용
+	regdate DATE         NULL     COMMENT '작성일자', -- 작성일자
+	moddate DATE         NULL     COMMENT '수정일자', -- 수정일자
+	views   INT(10)      NULL     COMMENT '조회수' -- 조회수
+)
+COMMENT '게시판';
+
+-- 게시판
+ALTER TABLE portfolio_planner.board
+	ADD CONSTRAINT PK_board -- 게시판 기본키
+		PRIMARY KEY (
+			bno -- 게시판번호
+		);
+
+ALTER TABLE portfolio_planner.board
+	MODIFY COLUMN bno INT(10) NOT NULL AUTO_INCREMENT COMMENT '게시판번호';
+
+-- 운동
+CREATE TABLE portfolio_planner.exercise (
+	eno   INT(10)      NOT NULL COMMENT '운동번호', -- 운동번호
+	part  VARCHAR(100) NULL     COMMENT '부위', -- 부위
+	name  VARCHAR(100) NULL     COMMENT '이름', -- 이름
+	info  VARCHAR(100) NULL     COMMENT '정보', -- 정보
+	video VARCHAR(100) NULL     COMMENT '영상' -- 영상
+)
+COMMENT '운동';
+
+-- 운동
+ALTER TABLE portfolio_planner.exercise
+	ADD CONSTRAINT PK_exercise -- 운동 기본키
+		PRIMARY KEY (
+			eno -- 운동번호
+		);
+
+ALTER TABLE portfolio_planner.exercise
+	MODIFY COLUMN eno INT(10) NOT NULL AUTO_INCREMENT COMMENT '운동번호';
+
+-- 댓글
+CREATE TABLE portfolio_planner.reply (
+	rno     INT          NOT NULL COMMENT '댓글번호', -- 댓글번호
+	bno     INT(10)      NULL     COMMENT '게시판번호', -- 게시판번호
+	comment VARCHAR(100) NULL     COMMENT '내용', -- 내용
+	regdate DATE         NULL     COMMENT '작성일자', -- 작성일자
+	moddate DATE         NULL     COMMENT '수정일자' -- 수정일자
+)
+COMMENT '댓글';
+
+-- 댓글
+ALTER TABLE portfolio_planner.reply
+	ADD CONSTRAINT PK_reply -- 댓글 기본키
+		PRIMARY KEY (
+			rno -- 댓글번호
+		);
+
+ALTER TABLE portfolio_planner.reply
+	MODIFY COLUMN rno INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
+-- 계획
+CREATE TABLE portfolio_planner.plan (
+	pno       INT          NOT NULL COMMENT '계획번호', -- 계획번호
+	mno       INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
+	eno       INT(10)      NOT NULL COMMENT '운동번호', -- 운동번호
+	title     VARCHAR(100) NOT NULL COMMENT '제목', -- 제목
+	startdate DATE         NOT NULL COMMENT '시작일자', -- 시작일자
+	enddate   DATE         NULL     COMMENT '종료일자', -- 종료일자
+	exec      BOOLEAN      NULL     COMMENT '실행여부' -- 실행여부
+)
+COMMENT '계획';
+
+-- 계획
+ALTER TABLE portfolio_planner.plan
+	ADD CONSTRAINT PK_plan -- 계획 기본키
+		PRIMARY KEY (
+			pno -- 계획번호
+		);
+
+ALTER TABLE portfolio_planner.plan
+	MODIFY COLUMN pno INT NOT NULL AUTO_INCREMENT COMMENT '계획번호';
+
+-- 첨부파일
+CREATE TABLE portfolio_planner.attach (
+	bno     INT(10)      NOT NULL COMMENT '게시판번호', -- 게시판번호
+	file    VARCHAR(100) NULL     COMMENT '파일명', -- 파일명
+	regdate DATE         NULL     COMMENT '작성일자' -- 작성일자
+)
+COMMENT '첨부파일';
+
+-- 정보
+CREATE TABLE portfolio_planner.information (
+	mno     INT(10) NOT NULL COMMENT '회원번호', -- 회원번호
+	weight  DOUBLE  NULL     COMMENT '키', -- 키
+	height  DOUBLE  NULL     COMMENT '몸무게', -- 몸무게
+	regdate DATE    NULL     COMMENT '생성일자' -- 생성일자
+)
+COMMENT '정보';
+
+-- 게시판
+ALTER TABLE portfolio_planner.board
+	ADD CONSTRAINT FK_member_TO_board -- 회원 -> 게시판
+		FOREIGN KEY (
+			mno -- 회원번호
+		)
+		REFERENCES portfolio_planner.member ( -- 회원
+			mno -- 회원번호
+		);
+
+-- 댓글
+ALTER TABLE portfolio_planner.reply
+	ADD CONSTRAINT FK_board_TO_reply -- 게시판 -> 댓글
+		FOREIGN KEY (
+			bno -- 게시판번호
+		)
+		REFERENCES portfolio_planner.board ( -- 게시판
+			bno -- 게시판번호
+		);
+
+-- 계획
+ALTER TABLE portfolio_planner.plan
+	ADD CONSTRAINT FK_exercise_TO_plan -- 운동 -> 계획
+		FOREIGN KEY (
+			eno -- 운동번호
+		)
+		REFERENCES portfolio_planner.exercise ( -- 운동
+			eno -- 운동번호
+		);
+
+-- 계획
+ALTER TABLE portfolio_planner.plan
+	ADD CONSTRAINT FK_member_TO_plan -- 회원 -> 계획
+		FOREIGN KEY (
+			mno -- 회원번호
+		)
+		REFERENCES portfolio_planner.member ( -- 회원
+			mno -- 회원번호
+		);
+
+-- 첨부파일
+ALTER TABLE portfolio_planner.attach
+	ADD CONSTRAINT FK_board_TO_attach -- 게시판 -> 첨부파일
+		FOREIGN KEY (
+			bno -- 게시판번호
+		)
+		REFERENCES portfolio_planner.board ( -- 게시판
+			bno -- 게시판번호
+		);
+
+-- 정보
+ALTER TABLE portfolio_planner.information
+	ADD CONSTRAINT FK_member_TO_information -- 회원 -> 정보
+		FOREIGN KEY (
+			mno -- 회원번호
+		)
+		REFERENCES portfolio_planner.member ( -- 회원
+			mno -- 회원번호
+		);
+
 CREATE USER 'portfolio_lch'@'%';
 ALTER USER 'portfolio_lch'@'%'
 IDENTIFIED BY 'rootroot' ;

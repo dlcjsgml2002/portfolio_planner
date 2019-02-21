@@ -30,23 +30,22 @@
 </style>
 <script>
 	var today = null;
-	var month = ${map.month};
-	var tyear = ${map.year};
-	function cal(y, m, d) {		
-		var table = "";
+	var lastArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+	function month(y, m, d) {
 		today = new Date(y, m, d);
-		var oneDay = new Date(y, m, 1);
-		var theDay = oneDay.getDay();
 		
-		var lastArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		var year = y;
+		var table = "";
+		var first = new Date(y, m, 1);
+		var day = first.getDay();
 		
-		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+		if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0) {
 			lastArr[1] = 29;
 		}
 		
-		var lastDay = lastArr[m];
-		var row = Math.ceil((theDay + lastDay) / 7);
+		var last = lastArr[m];
+		var row = Math.ceil((day + last) / 7);
+		var num = 1;
 		
 		table += "<table>"
 		table += "<caption><a href='#' id='prev'>&lt;</a>" + y + "." + (m + 1) + "<a href='#' id='next'>&gt;</a></caption>";
@@ -60,18 +59,16 @@
 		table += "<th>토</th>";
 		table += "</tr>";
 		
-		var num = 1;
-		
 		for (var i = 0; i < row; i++) {
 			table += "<tr>";
 			for (var j = 1;  j <= 7; j++) {
-				if (i == 0 && j <= theDay) {
+				if (i == 0 && j <= day) {
 					table += "<td></td>";
-				} else if(num > lastDay) {
+				} else if(num > last) {
 					table += "<td></td>";
 				} else {
-					if(num == d && m == month && y == tyear) {
-						table += "<td><a href='${pageContext.request.contextPath}/board/today' class=''>" + num + "</a></td>";
+					if(num == d && m == ${map.month} && y == ${map.year}) {
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					} else {
 						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					}
@@ -82,32 +79,33 @@
 		}
 		table += "</table>";
 		
-		$("#cal").html(table);
+		$("#calendar").html(table);
 	}
+	
 	
 	$(function(){
 		var date = new Date(${map.today.time});
-		cal(date.getFullYear(), date.getMonth(), date.getDate() );
+		month(date.getFullYear(), date.getMonth(), date.getDate() );
 		
 		$(document).on("click", "#prev", function(){
 			today.setMonth( today.getMonth() - 1 );
-			cal(today.getFullYear(), today.getMonth(), today.getDate() );
+			month(today.getFullYear(), today.getMonth(), today.getDate() );
 		})
 		
 		$(document).on("click", "#next", function(){
 			today.setMonth( today.getMonth() + 1 );
-			cal(today.getFullYear(), today.getMonth(), today.getDate() );
+			month(today.getFullYear(), today.getMonth(), today.getDate() );
 		})
 		
 	})
 </script>
 <section>
 	<div>
-		<a href="${pageContext.request.contextPath}/calendar/today">Day</a>
+		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
 		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
 		<a href="${pageContext.request.contextPath}/calendar/calendar">Month</a>
 	</div>
-	<div id="cal">
+	<div id="calendar">
 		
 	</div>
 </section>
