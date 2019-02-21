@@ -7,21 +7,16 @@ public class Member {
 	private String name;
 	private String email;
 	private boolean admin;
-	private double height;
-	private double weight;
 
 	public Member() {}
 
-	public Member(int mno, String id, String password, String name, String email, boolean admin, double height,
-			double weight) {
+	public Member(int mno, String id, String password, String name, String email, boolean admin) {
 		this.mno = mno;
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.admin = admin;
-		this.height = height;
-		this.weight = weight;
 	}
 
 	public int getMno() {
@@ -72,26 +67,10 @@ public class Member {
 		this.admin = admin;
 	}
 
-	public double getHeight() {
-		return height;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-	public double getWeight() {
-		return weight;
-	}
-
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Member [mno=%s, id=%s, password=%s, name=%s, email=%s, admin=%s, height=%s, weight=%s]",
-				mno, id, password, name, email, admin, height, weight);
+		return String.format("Member [mno=%s, id=%s, password=%s, name=%s, email=%s, admin=%s]", mno, id, password,
+				name, email, admin);
 	}
 
 }

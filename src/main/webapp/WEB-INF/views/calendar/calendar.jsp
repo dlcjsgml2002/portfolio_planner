@@ -71,9 +71,9 @@
 					table += "<td></td>";
 				} else {
 					if(num == d && m == month && y == tyear) {
-						table += "<td><a href='#' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/board/today' class=''>" + num + "</a></td>";
 					} else {
-						table += "<td><a href='#' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					}
 					num++;
 				}
@@ -102,6 +102,11 @@
 	})
 </script>
 <section>
+	<div>
+		<a href="${pageContext.request.contextPath}/calendar/today">Day</a>
+		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
+		<a href="${pageContext.request.contextPath}/calendar/calendar">Month</a>
+	</div>
 	<div id="cal">
 		
 	</div>

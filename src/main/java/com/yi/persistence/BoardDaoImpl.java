@@ -24,6 +24,12 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
+	public Board read(int bno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public void update(Board board) {
 		// TODO Auto-generated method stub
 

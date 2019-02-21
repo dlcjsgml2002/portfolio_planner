@@ -28,7 +28,7 @@ public class UserController {
 		logger.info("login Get ----------");
 	}
 	
-	@RequestMapping(value="loginPost", method=RequestMethod.POST)
+	/*@RequestMapping(value="loginPost", method=RequestMethod.POST)
 	public void loginPost(String id, String pw, Model model) {
 		logger.info("login Post ----------");
 		Member member = service.readmember(id, pw);
@@ -38,10 +38,10 @@ public class UserController {
 		}
 		
 		Login login = new Login();
-		login.setUserid(member.getId());
-		login.setUsername(member.getName());
+		login.setId(member.getId());
+		login.setName(member.getName());
 		
-		model.addAttribute("memberVO", login);
+		model.addAttribute("member", login);
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
@@ -50,6 +50,6 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/board/list";
-	}
+	}*/
 
 }

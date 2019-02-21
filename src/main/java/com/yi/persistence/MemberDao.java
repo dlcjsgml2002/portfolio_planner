@@ -5,7 +5,7 @@ import java.util.List;
 import com.yi.domain.Member;
 
 public interface MemberDao {
-	
+
 	public String getTime();
 
 	public void insertMember(Member member);
