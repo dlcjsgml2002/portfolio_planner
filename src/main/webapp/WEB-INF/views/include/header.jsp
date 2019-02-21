@@ -27,7 +27,7 @@
 					<li><a href="#">작심삼일이란?</a></li>
 				</ul>
 			</li>
-			<li><a href="${pageContext.request.contextPath}/calendar/calendar">내 일정 확인</a>
+			<li><a href="${pageContext.request.contextPath}/calendar/day">내 일정 확인</a>
 			</li>
 			<li><a href="#">내 정보 확인</a>
 				<ul class="submenu">
@@ -43,5 +43,3 @@
 			</li>
 		</ul>
 	</nav>
-	
-	<section>
