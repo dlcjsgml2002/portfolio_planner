@@ -2,14 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style>
-	#cal {
-		width: 60%;
-		text-align: center;
-	}
-</style>
 <section>
-	<div>
+	<div id="cal">
 		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
 		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
 		<a href="${pageContext.request.contextPath}/calendar/month">Month</a>
@@ -44,7 +38,8 @@
 		<h3>설명</h3>
 		<p>바이시크은 부릉부릉</p>
 		<h3>동영상</h3>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/kgUndAxMqY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/kgUndAxMqY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
 		<a href="https://www.youtube.com/embed/kgUndAxMqY8">영상보기</a>
 </section>	
 <%@ include file="../include/footer.jsp"%>

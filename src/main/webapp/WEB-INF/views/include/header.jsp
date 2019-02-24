@@ -31,8 +31,8 @@
 			</li>
 			<li><a href="#">내 정보 확인</a>
 				<ul class="submenu">
-					<li><a href="${pageContext.request.contextPath}/board/list">내 정보 변경</a></li>
-					<li><a href="${pageContext.request.contextPath}/board/list">내 건강 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/info">내 정보 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/health">내 운동 관리</a></li>
 				</ul>
 			</li>
 			<li><a href="#">커뮤니티</a>

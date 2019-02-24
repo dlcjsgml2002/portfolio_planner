@@ -27,6 +27,8 @@
 		height: 100px;
 		border: 1px solid black;
 	}
+	
+	
 </style>
 <script>
 	var today = null;
@@ -48,7 +50,7 @@
 		var num = 1;
 		
 		table += "<table>"
-		table += "<caption><a href='#' id='prev'>&lt;</a>" + y + "." + (m + 1) + "<a href='#' id='next'>&gt;</a></caption>";
+		table += "<caption><a href='#' id='prev'>&lt;</a>" + y + "년 " + (m + 1) + "월<a href='#' id='next'>&gt;</a></caption>";
 		table += "<tr>";
 		table += "<th>일</th>";
 		table += "<th>월</th>";
@@ -68,7 +70,8 @@
 					table += "<td></td>";
 				} else {
 					if(num == d && m == ${map.month} && y == ${map.year}) {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a>";
+						table += "<ul><li>" + "목로로로로옹ㄱ" + "<li></ul></td>";
 					} else {
 						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					}
