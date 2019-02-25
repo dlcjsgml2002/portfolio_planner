@@ -4,9 +4,15 @@
 <%@ include file="../include/header.jsp"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
+	section {
+		margin: 10px auto;
+		width: 80%;
+		height: 760px;
+	}
+
 	table {
 		margin: 10px auto;
-		width: 50%;
+		width: 100%;
 		border-collapse: collapse;
 	}
 	
@@ -19,6 +25,7 @@
 	}
 	
 	a {
+		color: black;
 		text-decoration: none;
 	}
 
@@ -28,7 +35,13 @@
 		border: 1px solid black;
 	}
 	
+	#calendar_menu {
+		float: right;
+	}
 	
+	#calendar_menu a {
+		border: 1px solid black;
+	}
 </style>
 <script>
 	var today = null;
@@ -70,8 +83,7 @@
 					table += "<td></td>";
 				} else {
 					if(num == d && m == ${map.month} && y == ${map.year}) {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a>";
-						table += "<ul><li>" + "목로로로로옹ㄱ" + "<li></ul></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					} else {
 						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
 					}
@@ -103,10 +115,10 @@
 	})
 </script>
 <section>
-	<div>
+	<div id="calendar_menu">
 		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
 		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/calendar">Month</a>
+		<a href="${pageContext.request.contextPath}/calendar/month">Month</a>
 	</div>
 	<div id="calendar">
 		

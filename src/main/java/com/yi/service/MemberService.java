@@ -5,16 +5,14 @@ import java.util.List;
 import com.yi.domain.Member;
 
 public interface MemberService {
-	public String getTime();
+	public void insert(Member member);
 
-	public void insertMember(Member member);
+	public Member read(String id, String pw);
 
-	public Member readmember(String id, String pw);
+	public void update(Member member);
+
+	public void delete(Member member);
 
 	public List<Member> selectAll();
-
-	public void updateMember(Member member);
-
-	public void deleteMember(Member member);
 
 }

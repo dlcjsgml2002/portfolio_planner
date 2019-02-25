@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.PlanMapper">
+	<insert id="insert">
+		insert into plan (mno, eno, title, startdate, enddate, exec)
+		values (#{member.mno}, #{exercise.eno}, #{startdate}, #{enddate}, false)
+	</insert>
+</mapper>

@@ -19,42 +19,37 @@ public class MemberDaoImpl implements MemberDao {
 	private static final String namespace = "com.yi.mapper.MemberMapper";
 
 	@Override
-	public String getTime() {
+	public void insert(Member member) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".getTime");
+		sqlSession.insert(namespace + ".insert", member);
 	}
 
 	@Override
-	public void insertMember(Member member) {
-		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + ".insertMember", member);
-	}
-
-	@Override
-	public Member readmember(String id, String pw) {
+	public Member read(String id, String pw) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("pw", pw);
-		return sqlSession.selectOne(namespace + ".readMember", map);
+
+		return sqlSession.selectOne(namespace + ".read", map);
+	}
+
+	@Override
+	public void update(Member member) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".update", member);
+	}
+
+	@Override
+	public void delete(Member member) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".delete", member);
 	}
 
 	@Override
 	public List<Member> selectAll() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".selectAll");
-	}
-
-	@Override
-	public void updateMember(Member member) {
-		// TODO Auto-generated method stub
-		sqlSession.update(namespace + ".updateMember", member);
-	}
-
-	@Override
-	public void deleteMember(Member member) {
-		// TODO Auto-generated method stub
-		sqlSession.delete(namespace + ".deleteMember", member);
 	}
 
 }

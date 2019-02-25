@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.BoardMapper">
 	<insert id="insert">
-		insert into board (title, content, writer)
-		values (#{title}, #{content}, #{writer})
+		insert into board (mno, title, content, regdate, moddate, views)
+		values (#{member.mno}, #{title}, #{content}, now(), now(), 0);
 	</insert>
 	
 	<select id="read" resultType="Board">
@@ -16,7 +16,7 @@
 	
 	<update id="update">
 		update board
-		set title = #{title}, content = #{content}
+		set title = #{title}, content = #{content}, moddate = now()
 		where bno = #{bno}
 	</update>
 	
@@ -82,7 +82,7 @@
 	
 	<select id="searchTotalCount" resultType="int">
 		select count(bno)
-		from tbl_board
+		from board
 		<include refid="search" />
 	</select>
 	
@@ -93,12 +93,12 @@
 	</update>
 	
 	<insert id="addAttach">
-		insert into attach(fullname, bno)
-		values (#{fullname}, LAST_INSERT_ID())
+		insert into attach(file, bno)
+		values (#{file}, LAST_INSERT_ID())
 	</insert>
 	
 	<select id="getAttach" resultType="String">
-		select fullname
+		select file
 		from tbl_attach
 		where bno = #{bno}
 		order by regdate
@@ -113,11 +113,11 @@
 	<delete id="delAttachByFullName">
 		delete
 		from attach
-		where bno = #{bno} and fullname = #{fullname}
+		where bno = #{bno} and file = #{file}
 	</delete>
 	
 	<insert id="addAttachByBno">
-		insert into attach(fullname, bno)
-		values (#{fullname}, ${bno})
+		insert into attach(file, bno)
+		values (#{file}, ${bno})
 	</insert>
 </mapper>

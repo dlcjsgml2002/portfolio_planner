@@ -5,16 +5,14 @@ import java.util.List;
 import com.yi.domain.Member;
 
 public interface MemberDao {
+	public void insert(Member member);
 
-	public String getTime();
+	public Member read(String id, String pw);
 
-	public void insertMember(Member member);
+	public void update(Member member);
 
-	public Member readmember(String id, String pw);
+	public void delete(Member member);
 
 	public List<Member> selectAll();
 
-	public void updateMember(Member member);
-
-	public void deleteMember(Member member);
 }

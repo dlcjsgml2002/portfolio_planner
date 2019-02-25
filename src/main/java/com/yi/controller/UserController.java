@@ -28,10 +28,10 @@ public class UserController {
 		logger.info("login Get ----------");
 	}
 	
-	/*@RequestMapping(value="loginPost", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	public void loginPost(String id, String pw, Model model) {
 		logger.info("login Post ----------");
-		Member member = service.readmember(id, pw);
+		Member member = service.read(id, pw);
 		
 		if (member == null) {
 			logger.info("loginPost return ...... ");
@@ -50,6 +50,6 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/board/list";
-	}*/
+	}
 
 }

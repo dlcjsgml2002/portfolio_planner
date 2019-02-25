@@ -3,17 +3,17 @@ package com.yi.domain;
 public class Member {
 	private int mno;
 	private String id;
-	private String password;
+	private String pw;
 	private String name;
 	private String email;
 	private boolean admin;
 
 	public Member() {}
 
-	public Member(int mno, String id, String password, String name, String email, boolean admin) {
+	public Member(int mno, String id, String pw, String name, String email, boolean admin) {
 		this.mno = mno;
 		this.id = id;
-		this.password = password;
+		this.pw = pw;
 		this.name = name;
 		this.email = email;
 		this.admin = admin;
@@ -35,12 +35,12 @@ public class Member {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPw() {
+		return pw;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 
 	public String getName() {
@@ -69,8 +69,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return String.format("Member [mno=%s, id=%s, password=%s, name=%s, email=%s, admin=%s]", mno, id, password,
-				name, email, admin);
+		return String.format("Member [mno=%s, id=%s, pw=%s, name=%s, email=%s, admin=%s]", mno, id, pw, name, email,
+				admin);
 	}
 
 }

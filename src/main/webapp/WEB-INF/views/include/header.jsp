@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/include.css?m=3">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/include.css">
 </head>
 <body>
 	<header>
