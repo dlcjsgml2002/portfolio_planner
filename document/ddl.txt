@@ -9,9 +9,9 @@ CREATE TABLE portfolio_planner.member (
 	mno   INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
 	id    VARCHAR(100) NOT NULL COMMENT '아이디', -- 아이디
 	pw    VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
-	name  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
-	email VARCHAR(100) NOT NULL COMMENT '이메일', -- 이메일
-	admin BOOLEAN      NULL     COMMENT '관리자' -- 관리자
+	name  VARCHAR(100) NULL     COMMENT '이름', -- 이름
+	email VARCHAR(100) NULL     COMMENT '이메일', -- 이메일
+	admin BOOLEAN      NOT NULL COMMENT '관리자' -- 관리자
 )
 COMMENT '회원';
 
@@ -28,9 +28,9 @@ ALTER TABLE portfolio_planner.member
 -- 게시판
 CREATE TABLE portfolio_planner.board (
 	bno     INT(10)      NOT NULL COMMENT '게시판번호', -- 게시판번호
-	mno     INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
+	mno     INT(10)      NULL     COMMENT '회원번호', -- 회원번호
 	title   VARCHAR(100) NOT NULL COMMENT '제목', -- 제목
-	comment TEXT         NOT NULL COMMENT '내용', -- 내용
+	content TEXT         NOT NULL COMMENT '내용', -- 내용
 	regdate DATE         NULL     COMMENT '작성일자', -- 작성일자
 	moddate DATE         NULL     COMMENT '수정일자', -- 수정일자
 	views   INT(10)      NULL     COMMENT '조회수' -- 조회수
@@ -90,8 +90,8 @@ ALTER TABLE portfolio_planner.reply
 -- 계획
 CREATE TABLE portfolio_planner.plan (
 	pno       INT          NOT NULL COMMENT '계획번호', -- 계획번호
-	mno       INT(10)      NOT NULL COMMENT '회원번호', -- 회원번호
-	eno       INT(10)      NOT NULL COMMENT '운동번호', -- 운동번호
+	mno       INT(10)      NULL     COMMENT '회원번호', -- 회원번호
+	eno       INT(10)      NULL     COMMENT '운동번호', -- 운동번호
 	title     VARCHAR(100) NOT NULL COMMENT '제목', -- 제목
 	startdate DATE         NOT NULL COMMENT '시작일자', -- 시작일자
 	enddate   DATE         NULL     COMMENT '종료일자', -- 종료일자
@@ -111,18 +111,18 @@ ALTER TABLE portfolio_planner.plan
 
 -- 첨부파일
 CREATE TABLE portfolio_planner.attach (
-	bno     INT(10)      NOT NULL COMMENT '게시판번호', -- 게시판번호
-	file    VARCHAR(100) NULL     COMMENT '파일명', -- 파일명
-	regdate DATE         NULL     COMMENT '작성일자' -- 작성일자
+	bno     INT(10)      NULL COMMENT '게시판번호', -- 게시판번호
+	file    VARCHAR(100) NULL COMMENT '파일명', -- 파일명
+	regdate DATE         NULL COMMENT '작성일자' -- 작성일자
 )
 COMMENT '첨부파일';
 
 -- 정보
 CREATE TABLE portfolio_planner.information (
-	mno     INT(10) NOT NULL COMMENT '회원번호', -- 회원번호
-	weight  DOUBLE  NULL     COMMENT '키', -- 키
-	height  DOUBLE  NULL     COMMENT '몸무게', -- 몸무게
-	regdate DATE    NULL     COMMENT '생성일자' -- 생성일자
+	mno     INT(10) NULL COMMENT '회원번호', -- 회원번호
+	weight  DOUBLE  NULL COMMENT '키', -- 키
+	height  DOUBLE  NULL COMMENT '몸무게', -- 몸무게
+	regdate DATE    NULL COMMENT '생성일자' -- 생성일자
 )
 COMMENT '정보';
 

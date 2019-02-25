@@ -51,7 +51,7 @@
 													<tr>
 														<td>${boardVO.bno }</td>
 														<td>
-															<a href="${pageContext.request.contextPath}/sboard/read?bno=${boardVO.bno}&page=${pageMaker.cri.page}">${boardVO.title }</a>
+															<a href="${pageContext.request.contextPath}/board/read?bno=${boardVO.bno}&page=${pageMaker.cri.page}">${boardVO.title }</a>
 															<strong>[${boardVO.replycnt }]</strong>
 														</td>
 														<td>${item.writer }</td>
@@ -90,6 +90,7 @@
 			</div>
 		</div>
 	</div>
+	<div></div>
 </section>
 <script>
 	$(function(){

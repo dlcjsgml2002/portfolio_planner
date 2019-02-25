@@ -32,10 +32,10 @@ public interface BoardDao {
 	public void addAttach(String fullname);
 
 	public List<String> getAttach(int bno);
-	
+
 	public void delAttach(int bno);
-	
+
 	public void delAttachByFullName(int bno, String fullname);
-	
+
 	public void addAttachByBno(String fullname, int bno);
 }

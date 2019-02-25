@@ -15,39 +15,33 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao dao;
 
 	@Override
-	public String getTime() {
+	public void insert(Member member) {
 		// TODO Auto-generated method stub
-		return dao.getTime();
+		dao.insert(member);
 	}
 
 	@Override
-	public void insertMember(Member member) {
+	public Member read(String id, String pw) {
 		// TODO Auto-generated method stub
-		dao.insertMember(member);
+		return dao.read(id, pw);
 	}
 
 	@Override
-	public Member readmember(String id, String pw) {
+	public void update(Member member) {
 		// TODO Auto-generated method stub
-		return dao.readmember(id, pw);
+		dao.update(member);
+	}
+
+	@Override
+	public void delete(Member member) {
+		// TODO Auto-generated method stub
+		dao.delete(member);
 	}
 
 	@Override
 	public List<Member> selectAll() {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
-	}
-
-	@Override
-	public void updateMember(Member member) {
-		// TODO Auto-generated method stub
-		dao.updateMember(member);
-	}
-
-	@Override
-	public void deleteMember(Member member) {
-		// TODO Auto-generated method stub
-		dao.deleteMember(member);
 	}
 
 }

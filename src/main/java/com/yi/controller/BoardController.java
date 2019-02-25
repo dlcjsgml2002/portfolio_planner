@@ -41,8 +41,8 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 	
-	/*@Resource(name = "uploadPath")
-	private String uploadPath;*/
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 
 	// sBoard/list?page=10
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -68,7 +68,7 @@ public class BoardController {
 		logger.info("register ----- post");
 		logger.info(board.toString());
 		
-		/*List<String> files = new ArrayList<>();
+		List<String> files = new ArrayList<>();
 		for (MultipartFile file : imageFiles) {
 			logger.info("file name : " + file.getOriginalFilename());
 			logger.info("file size : " + file.getSize());
@@ -77,7 +77,7 @@ public class BoardController {
 			
 			files.add(thumbPath);
 		}
-		board.setFiles(files);*/
+		board.setFiles(files);
 		
 		service.regist(board);
 
@@ -93,7 +93,7 @@ public class BoardController {
 		
 	}
 
-	/*@RequestMapping(value = "modify", method = RequestMethod.GET)
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public void modifyGet(int bno, Criteria cri, Model model) {
 		logger.info("modify ----- get");
 		Board vo = service.read(bno);
@@ -140,7 +140,7 @@ public class BoardController {
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("keyward", cri.getPerPageNum());
 
-		return "redirect:/sboard/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
+		return "redirect:/board/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
 	}
 
 	@RequestMapping(value = "remove", method = RequestMethod.POST)
@@ -176,6 +176,6 @@ public class BoardController {
 		}
 		
 		return entity;
-	}*/
+	}
 
 }

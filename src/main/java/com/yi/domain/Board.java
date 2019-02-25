@@ -6,21 +6,25 @@ import java.util.List;
 public class Board {
 	private int bno;
 	private String title;
-	private String comment;
-	private Member member;
+	private String content;
 	private Date regDate;
+	private Date modDate;
 	private int views;
+	private Member member;
 	private List<String> files;
 
 	public Board() {}
 
-	public Board(int bno, String title, String comment, Member member, Date regDate, int views, List<String> files) {
+	public Board(int bno, String title, String content, Date regDate, Date modDate, int views, Member member,
+			List<String> files) {
+		super();
 		this.bno = bno;
 		this.title = title;
-		this.comment = comment;
-		this.member = member;
+		this.content = content;
 		this.regDate = regDate;
+		this.modDate = modDate;
 		this.views = views;
+		this.member = member;
 		this.files = files;
 	}
 
@@ -40,20 +44,12 @@ public class Board {
 		this.title = title;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getContent() {
+		return content;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Date getRegDate() {
@@ -64,12 +60,28 @@ public class Board {
 		this.regDate = regDate;
 	}
 
+	public Date getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
+	}
+
 	public int getViews() {
 		return views;
 	}
 
 	public void setViews(int views) {
 		this.views = views;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public List<String> getFiles() {
@@ -82,8 +94,9 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return String.format("Board [bno=%s, title=%s, comment=%s, member=%s, regDate=%s, views=%s, files=%s]", bno,
-				title, comment, member, regDate, views, files);
+		return String.format(
+				"Board [bno=%s, title=%s, content=%s, regDate=%s, modDate=%s, views=%s, member=%s, files=%s]", bno,
+				title, content, regDate, modDate, views, member, files);
 	}
 
 }

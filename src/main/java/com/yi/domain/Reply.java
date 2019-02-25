@@ -7,18 +7,18 @@ public class Reply {
 	private int bno;
 	private String replytext;
 	private String replyer;
-	private Date regdate;
-	private Date updatedate;
+	private Date regDate;
+	private Date modDate;
 
 	public Reply() {}
 
-	public Reply(int rno, int bno, String replytext, String replyer, Date regdate, Date updatedate) {
+	public Reply(int rno, int bno, String replytext, String replyer, Date regDate, Date modDate) {
 		this.rno = rno;
 		this.bno = bno;
 		this.replytext = replytext;
 		this.replyer = replyer;
-		this.regdate = regdate;
-		this.updatedate = updatedate;
+		this.regDate = regDate;
+		this.modDate = modDate;
 	}
 
 	public int getRno() {
@@ -53,25 +53,26 @@ public class Reply {
 		this.replyer = replyer;
 	}
 
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
-	public Date getUpdatedate() {
-		return updatedate;
+	public Date getModDate() {
+		return modDate;
 	}
 
-	public void setUpdatedate(Date updatedate) {
-		this.updatedate = updatedate;
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Reply [rno=%s, bno=%s, replytext=%s, replyer=%s, regdate=%s, updatedate=%s]", rno, bno,
-				replytext, replyer, regdate, updatedate);
+		return String.format("Reply [rno=%s, bno=%s, replytext=%s, replyer=%s, regDate=%s, modDate=%s]", rno, bno,
+				replytext, replyer, regDate, modDate);
 	}
+
 }
