@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yi.domain.Board;
 import com.yi.domain.Criteria;
+import com.yi.domain.Member;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.service.BoardService;
@@ -53,6 +54,7 @@ public class BoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.searchTotalCount(cri));
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
@@ -64,9 +66,9 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String registerPost(Board board, List<MultipartFile> imageFiles) throws IOException {
+	public String registerPost(Board vo, List<MultipartFile> imageFiles) throws IOException {
 		logger.info("register ----- post");
-		logger.info(board.toString());
+		logger.info(vo.toString());
 		
 		List<String> files = new ArrayList<>();
 		for (MultipartFile file : imageFiles) {
@@ -77,11 +79,11 @@ public class BoardController {
 			
 			files.add(thumbPath);
 		}
-		board.setFiles(files);
+		vo.setFiles(files);
 		
-		service.regist(board);
+		service.regist(vo);
 
-		return "redirect:/board/list";
+		return "redirect:/sboard/list";
 	}
 
 	@RequestMapping(value = "read", method = RequestMethod.GET)
@@ -140,7 +142,7 @@ public class BoardController {
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("keyward", cri.getPerPageNum());
 
-		return "redirect:/board/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
+		return "redirect:/sboard/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
 	}
 
 	@RequestMapping(value = "remove", method = RequestMethod.POST)
@@ -149,7 +151,7 @@ public class BoardController {
 		service.remove(bno);
 		model.addAttribute("cri", cri);
 
-		return "redirect:/board/list?page=" + cri.getPage();
+		return "redirect:/sboard/list?page=" + cri.getPage();
 	}
 	
 	@ResponseBody

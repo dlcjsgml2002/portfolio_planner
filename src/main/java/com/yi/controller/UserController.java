@@ -17,7 +17,6 @@ import com.yi.service.MemberService;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
-	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
@@ -28,13 +27,15 @@ public class UserController {
 		logger.info("login Get ----------");
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@RequestMapping(value="loginPost", method=RequestMethod.POST)
 	public void loginPost(String id, String pw, Model model) {
 		logger.info("login Post ----------");
 		Member member = service.read(id, pw);
+		System.out.println(member);
 		
 		if (member == null) {
 			logger.info("loginPost return ...... ");
+			return;
 		}
 		
 		Login login = new Login();
@@ -50,6 +51,16 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value="info", method = RequestMethod.GET)
+	public void infoGet() {
+		logger.info("info get ----------");
+	}
+	
+	@RequestMapping(value="health", method = RequestMethod.GET)
+	public void healthGet() {
+		logger.info("health get ----------");
 	}
 
 }

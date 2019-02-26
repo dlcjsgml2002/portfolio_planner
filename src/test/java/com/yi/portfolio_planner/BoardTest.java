@@ -29,14 +29,14 @@ public class BoardTest {
 		board.setMember(memberDao.read("id", "pw"));
 		boardDao.insert(board);
 		System.out.println("insert : " + board);
-	}
+	}*/
 
 	@Test
 	public void test02Read() {
 		System.out.println("read : " + boardDao.read(1));
 	}
 
-	@Test
+	/*@Test
 	public void test03Update() {
 		Board board = new Board();
 		board.setBno(3);
@@ -46,17 +46,17 @@ public class BoardTest {
 		System.out.println(board);
 	}*/
 
-	@Test
+	/*@Test
 	public void testDelete() {
 		boardDao.delete(4);
-	}
+	}*/
 
 	@Test
 	public void testlistAll() {
 		System.out.println(boardDao.listAll());
 	}
 
-	@Test
+	/*@Test
 	public void testListPage() {
 		int page = 3;
 		boardDao.listPage(page);
@@ -73,6 +73,6 @@ public class BoardTest {
 	@Test
 	public void testTotalCount() {
 		System.out.println(boardDao.totalCount());
-	}
+	}*/
 
 }

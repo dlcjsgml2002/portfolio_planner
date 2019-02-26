@@ -3,6 +3,7 @@
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 	section {
 		margin: 10px auto;
@@ -43,55 +44,6 @@
 		border: 1px solid black;
 	}
 </style>
-<script>
-	var today = null;
-	
-	function day(y, m, d) {
-		today = new Date(y, m, d);
-		
-		var plan = "";
-		var day = today.getDay();
-		
-		table += "<table>"
-		table += "<caption><a href='#' id='prev'>&lt;</a>" + y + "년 " + (m + 1) + "월 " + d + "<a href='#' id='next'>&gt;</a></caption>";
-		
-		for (var i = 0; i < day; i++) {
-			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-			today.setDate(today.getDate() - (day - i));
-			table += "<td><a>" + (today.getDate()) + "</a></td>";
-			today = date;
-		}
-		                                     
-		for (var i = day; i < 7; i++) {
-			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-			today.setDate(today.getDate() - (day - i));
-			table += "<td><a>" + (today.getDate()) + "</a></td>";
-			today = date;
-		}
-		
-		table += "</tr>";
-		table += "</table>";
-		                                
-		$("#calendar").html(table);
-	}
-	
-	
-	$(function(){
-		var date = new Date(${map.today.time});
-		week(date.getFullYear(), date.getMonth(), date.getDate());
-		
-		$(document).on("click", "#prev", function(){
-			today.setDate( today.getDate() - 7 );
-			week(today.getFullYear(), today.getMonth(), today.getDate());
-		})
-		
-		$(document).on("click", "#next", function(){
-			today.setDate( today.getDate() + 7 );
-			week(today.getFullYear(), today.getMonth(), today.getDate());
-		})
-		
-	})
-</script>
 <section>
 	<div id="calendar_menu">
 		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
@@ -105,7 +57,8 @@
 		<ul>
 			<li>리스트
 				<ul>
-					<li>리스트 안 내용</li>
+					<li>팔굽혀펴기 3set <a>체크</a> <a>빼기</a></li>
+					<li>브런치 3set <a>체크</a> <a>빼기</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -30,13 +30,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("------- postHandle");
 		
-		Login vo = (Login) modelAndView.getModel().get("memberVO");
+		Login vo = (Login) modelAndView.getModel().get("member");
 		
 		if (vo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute(LOGIN, vo);
 			Object dest = session.getAttribute("dest");
-			String path = dest != null ? (String) dest : request.getContextPath() + "/sboard/list";
+			String path = dest != null ? (String) dest : request.getContextPath() + "/board/list";
 			response.sendRedirect(path);
 		}
 	}

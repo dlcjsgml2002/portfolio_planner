@@ -3,8 +3,55 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.PlanMapper">
-	<insert id="insert">
+	<resultMap type="plan" id="PlanResult">
+		<id property="mno" column="mno" />
+		<result property="title" column="title" />
+		<result property="set" column="set" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="member.mno" column="mno"/>
+		<result property="member.id" column="id"/>
+		<result property="member.pw" column="pw"/>
+		<result property="member.name" column="name"/>
+		<result property="member.eamil" column="eamil"/>
+		<result property="member.admin" column="admin"/>
+		<result property="exercise.eno" column="eno" />
+		<result property="exercise.part" column="part" />
+		<result property="exercise.name" column="name" />
+		<result property="exercise.info" column="info" />
+		<result property="exercise.video" column="video" />
+	</resultMap>
+	
+	<insert id="insertPlan">
 		insert into plan (mno, eno, title, startdate, enddate, exec)
 		values (#{member.mno}, #{exercise.eno}, #{startdate}, #{enddate}, false)
 	</insert>
+	
+	<update id="updatePlan">
+		update plan
+		set title = #{title},
+			set = #{set},
+			startDate = #{startDate},
+			endDate = #{endDate}
+		where mno = #{mno}
+	</update>
+	
+	<delete id="deletePlan">
+		delete
+		from plan
+		where mno = #{mno}
+	</delete>
+	
+	<select id="selectPlan">
+		select *
+		from plan as p
+		where mno = #{p.mno}
+	</select>
+	
+	<select id="selectPlanAll">
+		select *
+		from plan as p
+		join exercise as e on p.eno = e.eno
+		where p.eno = #{eno}
+	</select>
 </mapper>

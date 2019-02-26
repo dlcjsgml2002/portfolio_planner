@@ -5,14 +5,14 @@ import java.util.List;
 import com.yi.domain.Plan;
 
 public interface PlanDao {
-	public void insert();
-	
-	public Plan read();
+	public void insertPlan(Plan plan);
 
-	public void update();
+	public Plan selectPlan(int pno);
 
-	public void delete();
+	public void updatePlan(Plan plan);
 
-	public List<Plan> selectAll();
+	public void deletePlan(int pno);
+
+	public List<Plan> selectPlanAll();
 
 }
