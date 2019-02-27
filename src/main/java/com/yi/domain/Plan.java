@@ -5,22 +5,22 @@ import java.util.Date;
 public class Plan {
 	private int pno;
 	private String title;
-	private int set;
-	private Date startDate;
-	private Date endDate;
+	private int setcnt;
+	private Date startdate;
+	private Date enddate;
+	private boolean exec;
 	private Member member;
-	private Exercise exercise;
 
 	public Plan() {}
 
-	public Plan(int pno, String title, int set, Date startDate, Date endDate, Member member, Exercise exercise) {
+	public Plan(int pno, String title, int setcnt, Date startdate, Date enddate, boolean exec, Member member) {
 		this.pno = pno;
 		this.title = title;
-		this.set = set;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.setcnt = setcnt;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		this.exec = exec;
 		this.member = member;
-		this.exercise = exercise;
 	}
 
 	public int getPno() {
@@ -39,28 +39,36 @@ public class Plan {
 		this.title = title;
 	}
 
-	public int getSet() {
-		return set;
+	public int getSetcnt() {
+		return setcnt;
 	}
 
-	public void setSet(int set) {
-		this.set = set;
+	public void setSetcnt(int setcnt) {
+		this.setcnt = setcnt;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStartdate() {
+		return startdate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getEnddate() {
+		return enddate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public boolean isExec() {
+		return exec;
+	}
+
+	public void setExec(boolean exec) {
+		this.exec = exec;
 	}
 
 	public Member getMember() {
@@ -71,18 +79,10 @@ public class Plan {
 		this.member = member;
 	}
 
-	public Exercise getExercise() {
-		return exercise;
-	}
-
-	public void setExercise(Exercise exercise) {
-		this.exercise = exercise;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Plan [pno=%s, title=%s, set=%s, startDate=%s, endDate=%s, member=%s, exercise=%s]", pno,
-				title, set, startDate, endDate, member, exercise);
+		return String.format("Plan [pno=%s, title=%s, setcnt=%s, startdate=%s, enddate=%s, exec=%s, member=%s]", pno,
+				title, setcnt, startdate, enddate, exec, member);
 	}
 
 }

@@ -31,7 +31,6 @@ public class UserController {
 	public void loginPost(String id, String pw, Model model) {
 		logger.info("login Post ----------");
 		Member member = service.read(id, pw);
-		System.out.println(member);
 		
 		if (member == null) {
 			logger.info("loginPost return ...... ");
@@ -60,6 +59,16 @@ public class UserController {
 	
 	@RequestMapping(value="health", method = RequestMethod.GET)
 	public void healthGet() {
+		logger.info("health get ----------");
+	}
+	
+	@RequestMapping(value="register", method = RequestMethod.GET)
+	public void registerGet() {
+		logger.info("health get ----------");
+	}
+	
+	@RequestMapping(value="search", method = RequestMethod.GET)
+	public void searchGet() {
 		logger.info("health get ----------");
 	}
 

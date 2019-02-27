@@ -29,7 +29,7 @@
 		where id = #{id}
 	</delete>
 	
-	<select id="selectAll" resultType="Member">
+	<select id="selectByAll" resultType="Member">
 		select *
 		from member
 	</select>

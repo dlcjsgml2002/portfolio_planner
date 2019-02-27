@@ -3,33 +3,33 @@ package com.yi.domain;
 import java.util.Date;
 
 public class Information {
-	private int weight;
-	private int height;
+	private double weight;
+	private double height;
 	private Date regdate;
 	private Member member;
 
 	public Information() {}
 
-	public Information(int weight, int height, Date regdate, Member member) {
+	public Information(double weight, double height, Date regdate, Member member) {
 		this.weight = weight;
 		this.height = height;
 		this.regdate = regdate;
 		this.member = member;
 	}
 
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 

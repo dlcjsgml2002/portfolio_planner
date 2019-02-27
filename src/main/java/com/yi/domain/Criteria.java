@@ -1,8 +1,8 @@
 package com.yi.domain;
 
 public class Criteria {
-	private int page; // 선택한 페이지 번호
-	private int perPageNum; // 페이지 당 몇개 읽을 것인지 가지는 변수
+	private int page;
+	private int perPageNum;
 
 	public Criteria() {
 		page = 1;
@@ -17,6 +17,7 @@ public class Criteria {
 		if (page <= 0) {
 			page = 1;
 		}
+
 		this.page = page;
 	}
 
@@ -28,6 +29,7 @@ public class Criteria {
 		if (perPageNum <= 0 || perPageNum > 100) {
 			perPageNum = 10;
 		}
+
 		this.perPageNum = perPageNum;
 	}
 

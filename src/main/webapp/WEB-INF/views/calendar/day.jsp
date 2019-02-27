@@ -66,8 +66,12 @@
 	<div>
 	<h1>일정명</h1>
 	<p>카테고리</p>
+		<p>${map.list }</p>
 		<select>
 			<option>--부위--</option>
+			<c:forEach items="" var="">
+				
+			</c:forEach>
 		</select>
 		<select>
 			<option>--운동 이름--</option>
@@ -77,13 +81,6 @@
 		<input type="date" placeholder="종료일">
 	</div>
 	<div id="info">
-		<h3>이름</h3>
-		<p>바이시클</p>
-		<h3>설명</h3>
-		<p>바이시크은 부릉부릉</p>
-		<h3>동영상</h3>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/kgUndAxMqY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		<a href="https://www.youtube.com/embed/kgUndAxMqY8">영상보기</a>
 	</div>
 </section>	
 <%@ include file="../include/footer.jsp"%>

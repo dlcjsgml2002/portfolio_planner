@@ -33,9 +33,9 @@
 							<%-- <strong>[${board.replycnt }]</strong> --%>
 						</td>
 						<td>${board.member.name }</td>
-						<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd" />
+						<td><fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd" />
 						</td>
-						<td><span class="badge bg-red">${board.views }</span></td>
+						<td><span class="badge bg-red">${board.viewcnt }</span></td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -11,7 +11,6 @@ public class PageMaker {
 
 	private void calcData() {
 		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
-
 		startPage = (endPage - displayPageNum) + 1;
 
 		int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
@@ -21,7 +20,6 @@ public class PageMaker {
 		}
 
 		prev = (startPage == 1) ? false : true;
-
 		next = (endPage * cri.getPerPageNum() >= totalCount) ? false : true;
 	}
 

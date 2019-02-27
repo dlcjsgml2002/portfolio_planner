@@ -4,21 +4,19 @@ import java.util.Date;
 
 public class Reply {
 	private int rno;
-	private int bno;
-	private String replytext;
-	private String replyer;
-	private Date regDate;
-	private Date modDate;
+	private String content;
+	private String writer;
+	private Date regdate;
+	private Date moddate;
 
 	public Reply() {}
 
-	public Reply(int rno, int bno, String replytext, String replyer, Date regDate, Date modDate) {
+	public Reply(int rno, String content, String writer, Date regdate, Date moddate) {
 		this.rno = rno;
-		this.bno = bno;
-		this.replytext = replytext;
-		this.replyer = replyer;
-		this.regDate = regDate;
-		this.modDate = modDate;
+		this.content = content;
+		this.writer = writer;
+		this.regdate = regdate;
+		this.moddate = moddate;
 	}
 
 	public int getRno() {
@@ -29,50 +27,42 @@ public class Reply {
 		this.rno = rno;
 	}
 
-	public int getBno() {
-		return bno;
+	public String getContent() {
+		return content;
 	}
 
-	public void setBno(int bno) {
-		this.bno = bno;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getReplytext() {
-		return replytext;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setReplytext(String replytext) {
-		this.replytext = replytext;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public String getReplyer() {
-		return replyer;
+	public Date getRegdate() {
+		return regdate;
 	}
 
-	public void setReplyer(String replyer) {
-		this.replyer = replyer;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 
-	public Date getRegDate() {
-		return regDate;
+	public Date getModdate() {
+		return moddate;
 	}
 
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-
-	public Date getModDate() {
-		return modDate;
-	}
-
-	public void setModDate(Date modDate) {
-		this.modDate = modDate;
+	public void setModdate(Date moddate) {
+		this.moddate = moddate;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Reply [rno=%s, bno=%s, replytext=%s, replyer=%s, regDate=%s, modDate=%s]", rno, bno,
-				replytext, replyer, regDate, modDate);
+		return String.format("Reply [rno=%s, content=%s, writer=%s, regdate=%s, moddate=%s]", rno, content, writer,
+				regdate, moddate);
 	}
 
 }

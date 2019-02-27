@@ -20,13 +20,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void insert(Member member) {
-		// TODO Auto-generated method stub
 		sqlSession.insert(namespace + ".insert", member);
 	}
 
 	@Override
 	public Member read(String id, String pw) {
-		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("pw", pw);
@@ -36,20 +34,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void update(Member member) {
-		// TODO Auto-generated method stub
 		sqlSession.update(namespace + ".update", member);
 	}
 
 	@Override
 	public void delete(Member member) {
-		// TODO Auto-generated method stub
 		sqlSession.update(namespace + ".delete", member);
 	}
 
 	@Override
-	public List<Member> selectAll() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".selectAll");
+	public List<Member> selectByAll() {
+		return sqlSession.selectList(namespace + ".selectByAll");
 	}
 
 }

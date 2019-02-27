@@ -16,32 +16,27 @@ public class PlanDaoImpl implements PlanDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertPlan(Plan plan) {
-		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + ".insertPlan", plan);
+	public void insert(Plan plan) {
+		sqlSession.insert(namespace + ".insert", plan);
 	}
 
 	@Override
-	public Plan selectPlan(int pno) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".selectPlan", pno);
-	}
-
-	@Override
-	public void updatePlan(Plan plan) {
-		// TODO Auto-generated method stub
+	public void update(Plan plan) {
 		sqlSession.update(namespace + ".updatePlan", plan);
 	}
 
 	@Override
-	public void deletePlan(int pno) {
-		// TODO Auto-generated method stub
+	public void delete(int pno) {
 		sqlSession.delete(namespace + ".deletePlan", pno);
 	}
 
 	@Override
-	public List<Plan> selectPlanAll() {
-		// TODO Auto-generated method stub
+	public Plan selectByPno(int pno) {
+		return sqlSession.selectOne(namespace + ".selectByPno", pno);
+	}
+
+	@Override
+	public List<Plan> selectByAll() {
 		return sqlSession.selectList(namespace + ".selectPlanAll");
 	}
 

@@ -1,10 +1,10 @@
-package com.yi.persistence;
+package com.yi.service;
 
 import java.util.List;
 
 import com.yi.domain.Plan;
 
-public interface PlanDao {
+public interface PlanService {
 	public void insert(Plan plan);
 
 	public void update(Plan plan);

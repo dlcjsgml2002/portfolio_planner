@@ -1,0 +1,12 @@
+insert into member (id, pw, name, email, admin)
+values ('user01', '1234', '관리자', 'user01@google.co.kr', true),
+	('user02', '1234', '사용자', 'user02@naver.com', false);
+
+insert into exercise (part, name, link)
+values ('전신', '제자리 뛰기', 'https://terms.naver.com/entry.nhn?docId=2099793&cid=51030&categoryId=51030'),
+	('복부', '크런치[Crunch]', 'https://terms.naver.com/entry.nhn?docId=938919&cid=51030&categoryId=51030'),
+	('허벅지', '런지 [Lunge]', 'https://terms.naver.com/entry.nhn?docId=2099784&cid=51030&categoryId=51030'),
+	('가슴', '푸시업[Push-up]', 'https://terms.naver.com/entry.nhn?docId=938871&cid=51030&categoryId=51030'),
+	('엉덩이', '브릿지[Bridge]', 'https://terms.naver.com/entry.nhn?docId=2099777&cid=51030&categoryId=51030'),
+	('허벅지', '데드리프트 - 바벨, 스티프 레그드[Deadlift - Barbell, Stiff Legged]', 'https://terms.naver.com/entry.nhn?docId=938942&cid=51030&categoryId=51030'),
+	('허벅지', '와이드 스쿼트[Wide Squat]', 'https://terms.naver.com/entry.nhn?docId=2099783&cid=51030&categoryId=51030');

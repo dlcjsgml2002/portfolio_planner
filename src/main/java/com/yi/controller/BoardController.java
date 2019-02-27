@@ -38,14 +38,13 @@ import com.yi.util.UploadFileUtils;
 @RequestMapping("/board/*")
 public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@Inject
 	private BoardService service;
-	
+
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	// sBoard/list?page=10
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void list(SearchCriteria cri, Model model) {
 		logger.info("list ----- get");
@@ -54,7 +53,7 @@ public class BoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.searchTotalCount(cri));
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
@@ -66,53 +65,54 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String registerPost(Board vo, List<MultipartFile> imageFiles) throws IOException {
+	public String registerPost(Board board, List<MultipartFile> imageFiles) throws IOException {
 		logger.info("register ----- post");
-		logger.info(vo.toString());
-		
+		logger.info(board.toString());
+
 		List<String> files = new ArrayList<>();
 		for (MultipartFile file : imageFiles) {
 			logger.info("file name : " + file.getOriginalFilename());
 			logger.info("file size : " + file.getSize());
-			
+
 			String thumbPath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-			
+
 			files.add(thumbPath);
 		}
-		vo.setFiles(files);
-		
-		service.regist(vo);
+		board.setFiles(files);
 
-		return "redirect:/sboard/list";
+		service.regist(board);
+
+		return "redirect:/board/list";
 	}
 
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Criteria cri, Model model) {
 		logger.info("read ----- get");
-		Board vo = service.read(bno);
-		model.addAttribute("boardVO", vo);
+		Board board = service.read(bno);
+		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
-		
+
 	}
 
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public void modifyGet(int bno, Criteria cri, Model model) {
 		logger.info("modify ----- get");
-		Board vo = service.read(bno);
-		model.addAttribute("boardVO", vo);
+		Board board = service.read(bno);
+		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 	}
 
 	@RequestMapping(value = "modify", method = RequestMethod.POST)
-	public String modifyPost(Board vo, int bno, Criteria cri, String[] delFiles, List<MultipartFile> addfiles, Model model) throws IOException {
+	public String modifyPost(Board vo, int bno, Criteria cri, String[] delFiles, List<MultipartFile> addfiles,
+			Model model) throws IOException {
 		logger.info("modify ----- post");
 		if (delFiles != null) {
 			for (String delFile : delFiles) {
 				logger.info(delFile);
-				
+
 				File file = new File(uploadPath + delFile);
 				file.delete();
-				
+
 				String front = delFile.substring(0, 12);
 				String end = delFile.substring(14);
 				String originalFilename = front + end;
@@ -120,7 +120,7 @@ public class BoardController {
 				file2.delete();
 			}
 		}
-		
+
 		List<String> addImages = new ArrayList<>();
 		if (addfiles != null) {
 			for (MultipartFile file : addfiles) {
@@ -131,18 +131,18 @@ public class BoardController {
 
 					addImages.add(thumb);
 				}
-				
+
 			}
 		}
-		
+
 		System.out.println(vo);
 		service.modify(vo);
 		service.modifyFile(vo, delFiles, addImages);
-		
+
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("keyward", cri.getPerPageNum());
 
-		return "redirect:/sboard/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
+		return "redirect:/board/read?bno=" + vo.getBno() + "&page=" + cri.getPage();
 	}
 
 	@RequestMapping(value = "remove", method = RequestMethod.POST)
@@ -151,9 +151,9 @@ public class BoardController {
 		service.remove(bno);
 		model.addAttribute("cri", cri);
 
-		return "redirect:/sboard/list?page=" + cri.getPage();
+		return "redirect:/board/list?page=" + cri.getPage();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String filename) {
@@ -176,7 +176,7 @@ public class BoardController {
 			e.printStackTrace();
 			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		return entity;
 	}
 

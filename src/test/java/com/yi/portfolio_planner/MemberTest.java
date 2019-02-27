@@ -54,7 +54,7 @@ public class MemberTest {
 
 	@Test
 	public void test05SelectAll() {
-		System.out.println(dao.selectAll());
+		System.out.println(dao.selectByAll());
 	}
 
 }

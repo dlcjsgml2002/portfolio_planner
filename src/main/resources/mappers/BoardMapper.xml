@@ -7,9 +7,10 @@
 		<id property="bno" column="bno"/>
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
-		<result property="regDate" column="regdate"/>
-		<result property="modDate" column="moddate"/>
-		<result property="views" column="views"/>
+		<result property="regdate" column="regdate"/>
+		<result property="moddate" column="moddate"/>
+		<result property="viewcnt" column="viewcnt"/>
+		<result property="replycnt" column="replycnt"/>
 		<result property="member.mno" column="mno"/>
 		<result property="member.id" column="id"/>
 		<result property="member.pw" column="pw"/>
@@ -19,8 +20,8 @@
 	</resultMap>
 
 	<insert id="insert">
-		insert into board (mno, title, content, regdate, moddate, views)
-		values (#{member.mno}, #{title}, #{content}, now(), now(), 0);
+		insert into board (mno, title, content, regdate, moddate, viewcnt, replycnt)
+		values (#{member.mno}, #{title}, #{content}, now(), now(), 0, 0);
 	</insert>
 	
 	<select id="read" resultMap="BoardResult">
@@ -90,7 +91,6 @@
 	<select id="listSearch" resultMap="BoardResult">
 		select *
 		from board
-		join member on member.mno = board.mno
 		<include refid="search" />
 		order by bno desc
 		limit #{pageStart}, #{perPageNum}

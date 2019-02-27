@@ -20,20 +20,20 @@
 					<div class="form-group">
 						<label>Title</label> <input type="text" name="title"
 							class="form-control" placeholder="Enter Title"
-							value="${boardVO.title }" readonly="readonly">
+							value="${board.title }" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label>Content</label>
 						<textarea rows="5" class="form-control" name="content"
-							placeholder="Enter Content" readonly="readonly">${boardVO.content }</textarea>
+							placeholder="Enter Content" readonly="readonly">${board.content }</textarea>
 					</div>
 					<div class="form-group">
 						<label>Writer</label> <input type="text" name="writer"
 							class="form-control" placeholder="Enter Writer"
-							value="${boardVO.writer }" readonly="readonly">
+							value="${board.member.name }" readonly="readonly">
 					</div>
 					<div class="form-group">
-						<c:forEach var="file" items="${boardVO.files }">
+						<c:forEach var="file" items="${board.files }">
 							<div class="item">
 								<img alt="" src="displayFile?filename=${file }">
 							</div>
@@ -60,7 +60,7 @@
 				</div>
 
 				<form id="f1" action="" method="post">
-					<input type="hidden" name="bno" value="${boardVO.bno}"> <input
+					<input type="hidden" name="bno" value="${board.bno}"> <input
 						type="hidden" name="page" value="${cri.page}">
 				</form>
 			</div>

@@ -39,9 +39,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Member> selectAll() {
+	public List<Member> selectByAll() {
 		// TODO Auto-generated method stub
-		return dao.selectAll();
+		return dao.selectByAll();
 	}
 
 }

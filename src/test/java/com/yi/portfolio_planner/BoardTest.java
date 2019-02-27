@@ -21,22 +21,23 @@ public class BoardTest {
 	@Autowired
 	private MemberDao memberDao;
 
-	/*@Test
+	@Test
 	public void test01Insert() {
 		Board board = new Board();
 		board.setTitle("title");
 		board.setContent("content");
-		board.setMember(memberDao.read("id", "pw"));
+		board.setMember(memberDao.read("user01", "passward"));
+		
 		boardDao.insert(board);
 		System.out.println("insert : " + board);
-	}*/
+	}
 
 	@Test
 	public void test02Read() {
 		System.out.println("read : " + boardDao.read(1));
 	}
 
-	/*@Test
+	@Test
 	public void test03Update() {
 		Board board = new Board();
 		board.setBno(3);
@@ -44,19 +45,19 @@ public class BoardTest {
 		board.setContent("content2");
 		boardDao.update(board);
 		System.out.println(board);
-	}*/
+	}
 
-	/*@Test
+	@Test
 	public void testDelete() {
 		boardDao.delete(4);
-	}*/
+	}
 
 	@Test
 	public void testlistAll() {
 		System.out.println(boardDao.listAll());
 	}
 
-	/*@Test
+	@Test
 	public void testListPage() {
 		int page = 3;
 		boardDao.listPage(page);
@@ -73,6 +74,6 @@ public class BoardTest {
 	@Test
 	public void testTotalCount() {
 		System.out.println(boardDao.totalCount());
-	}*/
+	}
 
 }

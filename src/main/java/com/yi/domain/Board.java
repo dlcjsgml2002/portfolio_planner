@@ -7,23 +7,24 @@ public class Board {
 	private int bno;
 	private String title;
 	private String content;
-	private Date regDate;
-	private Date modDate;
-	private int views;
+	private Date regdate;
+	private Date moddate;
+	private int viewcnt;
+	private int replycnt;
 	private Member member;
 	private List<String> files;
 
 	public Board() {}
 
-	public Board(int bno, String title, String content, Date regDate, Date modDate, int views, Member member,
-			List<String> files) {
-		super();
+	public Board(int bno, String title, String content, Date regdate, Date moddate, int viewcnt, int replycnt,
+			Member member, List<String> files) {
 		this.bno = bno;
 		this.title = title;
 		this.content = content;
-		this.regDate = regDate;
-		this.modDate = modDate;
-		this.views = views;
+		this.regdate = regdate;
+		this.moddate = moddate;
+		this.viewcnt = viewcnt;
+		this.replycnt = replycnt;
 		this.member = member;
 		this.files = files;
 	}
@@ -52,28 +53,36 @@ public class Board {
 		this.content = content;
 	}
 
-	public Date getRegDate() {
-		return regDate;
+	public Date getRegdate() {
+		return regdate;
 	}
 
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 
-	public Date getModDate() {
-		return modDate;
+	public Date getModdate() {
+		return moddate;
 	}
 
-	public void setModDate(Date modDate) {
-		this.modDate = modDate;
+	public void setModdate(Date moddate) {
+		this.moddate = moddate;
 	}
 
-	public int getViews() {
-		return views;
+	public int getViewcnt() {
+		return viewcnt;
 	}
 
-	public void setViews(int views) {
-		this.views = views;
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
 	}
 
 	public Member getMember() {
@@ -95,8 +104,8 @@ public class Board {
 	@Override
 	public String toString() {
 		return String.format(
-				"Board [bno=%s, title=%s, content=%s, regDate=%s, modDate=%s, views=%s, member=%s, files=%s]", bno,
-				title, content, regDate, modDate, views, member, files);
+				"Board [bno=%s, title=%s, content=%s, regdate=%s, moddate=%s, viewcnt=%s, replycnt=%s, member=%s, files=%s]",
+				bno, title, content, regdate, moddate, viewcnt, replycnt, member, files);
 	}
 
 }

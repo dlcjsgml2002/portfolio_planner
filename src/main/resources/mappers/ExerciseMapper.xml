@@ -3,14 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.ExerciseMapper">
-	<select id="selectAll">
+	<insert id="insert">
+		insert into exercise (part, name, link)
+		values (#{part}, #{name}, #{link})
+	</insert>
+	
+	<update id="update">
+		update exercise
+		set part = #{part},
+			name = #{name},
+			link = #{link}
+		where eno = #{eno}
+	</update>
+	
+	<delete id="delete">
+		
+	</delete>
+
+	<select id="selectByEno" resultType="Exercise">
 		select *
 		from exercise
+		where eno = #{eno}
 	</select>
-	
-	<select id="select">
+
+	<select id="selectByPart" resultType="Exercise">
 		select *
 		from exercise
 		where part = #{part}
+	</select>
+	
+	<select id="selectByAll" resultType="Exercise">
+		select *
+		from exercise
 	</select>
 </mapper>

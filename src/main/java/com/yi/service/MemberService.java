@@ -13,6 +13,6 @@ public interface MemberService {
 
 	public void delete(Member member);
 
-	public List<Member> selectAll();
+	public List<Member> selectByAll();
 
 }
