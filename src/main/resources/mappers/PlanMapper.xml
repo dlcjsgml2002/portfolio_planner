@@ -46,9 +46,9 @@
 	</select>
 	
 	<select id="selectByAll"  resultMap="PlanResult">
-		select *
+		select m.mno, m.id, m.pw, m.name, m.email, m.admin, p.pno, p.title, p.startdate, p.enddate, p.exec
 		from plan as p
 		join member as m on m.mno = p.mno
-		where mno = #{mno}
+		where m.mno = #{mno}
 	</select>
 </mapper>

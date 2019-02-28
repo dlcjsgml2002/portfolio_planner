@@ -35,13 +35,18 @@ public class ExerciseServiceImpl implements ExerciseService {
 	}
 
 	@Override
+	public List<Exercise> selectByAll() {
+		return exerciseDao.selectByAll();
+	}
+
+	@Override
 	public List<Exercise> selectByPart(String part) {
 		return exerciseDao.selectByPart(part);
 	}
 
 	@Override
-	public List<Exercise> selectByAll() {
-		return exerciseDao.selectByAll();
+	public List<String> selectPartByPart() {
+		return exerciseDao.selectPartByPart();
 	}
 
 }

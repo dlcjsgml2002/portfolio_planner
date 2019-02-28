@@ -36,13 +36,18 @@ public class ExerciseDaoImpl implements ExerciseDao {
 	}
 
 	@Override
+	public List<Exercise> selectByAll() {
+		return sqlSession.selectList(namespace + ".selectByAll");
+	}
+
+	@Override
 	public List<Exercise> selectByPart(String part) {
 		return sqlSession.selectList(namespace + ".selectByPart", part);
 	}
 
 	@Override
-	public List<Exercise> selectByAll() {
-		return sqlSession.selectList(namespace + ".selectByAll");
+	public List<String> selectPartByPart() {
+		return sqlSession.selectList(namespace + ".selectPartByPart");
 	}
 
 }

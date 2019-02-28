@@ -13,8 +13,10 @@ public interface ExerciseService {
 
 	public Exercise selectByEno(int eno);
 
-	public List<Exercise> selectByPart(String part);
-
 	public List<Exercise> selectByAll();
+
+	public List<Exercise> selectByPart(String part);
+	
+	public List<String> selectPartByPart();
 
 }

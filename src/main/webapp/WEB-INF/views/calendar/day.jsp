@@ -44,6 +44,41 @@
 		border: 1px solid black;
 	}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="template1" type="text/x-handlebars-template">
+	{{#each.}}
+		<option value="{{eno}}">{{name}}</option>
+	{{/each}}
+</script>
+<script>
+	$(function(){
+		getPageList();
+		
+		$("#part").on("change", function(){
+			getPageList();
+		})
+	})
+
+	function getPageList() {
+		var part = $("#part").val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/dayajax",
+			type : "get",
+			data : {"part": part},
+			dataType : "json",
+			success : function(json) {
+				console.log(json);
+				$("#exercise").empty();	// 계속되는 추가를 막기위한 초기화
+				
+				var source = $("#template1").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				$("#exercise").append(result);
+				}
+			})
+		}
+
+</script>
 <section>
 	<div id="calendar_menu">
 		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
@@ -55,32 +90,26 @@
 		<a><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></a>
 		<img alt="" src="">
 		<ul>
-			<li>리스트
-				<ul>
-					<li>팔굽혀펴기 3set <a>체크</a> <a>빼기</a></li>
-					<li>브런치 3set <a>체크</a> <a>빼기</a></li>
-				</ul>
-			</li>
+			<c:forEach var="plan" items="${map.plan }">
+				<li>${plan.title }</li>
+			</c:forEach>  
 		</ul>
 	</div>
+	
 	<div>
-	<h1>일정명</h1>
+	<h1>운동 추가하기</h1>
 	<p>카테고리</p>
-		<p>${map.list }</p>
-		<select>
-			<option>--부위--</option>
-			<c:forEach items="" var="">
-				
-			</c:forEach>
+		<select id="part">
+			<c:forEach var="list" items="${map.list }">
+				<option value="${list }">${list }</option> 
+			</c:forEach>      
 		</select>
-		<select>
-			<option>--운동 이름--</option>
+		<select id="exercise">
 		</select>
-		<p></p>
 		<input type="date" placeholder="시작일">
 		<input type="date" placeholder="종료일">
 	</div>
 	<div id="info">
 	</div>
-</section>	
+</section>
 <%@ include file="../include/footer.jsp"%>

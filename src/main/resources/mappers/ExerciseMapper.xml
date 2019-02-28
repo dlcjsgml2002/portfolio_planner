@@ -17,8 +17,15 @@
 	</update>
 	
 	<delete id="delete">
-		
+		delete
+		from exercise
+		where eno = #{eno}
 	</delete>
+	
+	<select id="selectByAll" resultType="Exercise">
+		select *
+		from exercise
+	</select>
 
 	<select id="selectByEno" resultType="Exercise">
 		select *
@@ -32,8 +39,9 @@
 		where part = #{part}
 	</select>
 	
-	<select id="selectByAll" resultType="Exercise">
-		select *
+	<select id="selectPartByPart" resultType="String">
+		select part
 		from exercise
+		group by part
 	</select>
 </mapper>

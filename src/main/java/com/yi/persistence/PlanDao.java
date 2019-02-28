@@ -13,6 +13,6 @@ public interface PlanDao {
 
 	public Plan selectByPno(int pno);
 
-	public List<Plan> selectByAll();
+	public List<Plan> selectByAll(int mno);
 
 }

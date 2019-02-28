@@ -36,8 +36,8 @@ public class PlanDaoImpl implements PlanDao {
 	}
 
 	@Override
-	public List<Plan> selectByAll() {
-		return sqlSession.selectList(namespace + ".selectPlanAll");
+	public List<Plan> selectByAll(int mno) {
+		return sqlSession.selectList(namespace + ".selectByAll", mno);
 	}
 
 }
