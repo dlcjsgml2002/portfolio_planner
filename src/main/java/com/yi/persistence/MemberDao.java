@@ -14,5 +14,7 @@ public interface MemberDao {
 	public void delete(Member member);
 
 	public List<Member> selectByAll();
+	
+	public Member selectById(Member member);
 
 }

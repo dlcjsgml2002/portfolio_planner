@@ -15,9 +15,16 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao dao;
 
 	@Override
-	public void insert(Member member) {
-		// TODO Auto-generated method stub
-		dao.insert(member);
+	public boolean insert(Member member) {
+		
+		Member check_member = dao.selectById(member);
+		System.out.println("member : " + check_member);
+		if (check_member == null) {
+			dao.insert(member);
+		}else {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -42,6 +49,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectByAll() {
 		// TODO Auto-generated method stub
 		return dao.selectByAll();
+	}
+
+	@Override
+	public Member selectById(Member member) {
+		// TODO Auto-generated method stub
+		return dao.selectById(member);
 	}
 
 }

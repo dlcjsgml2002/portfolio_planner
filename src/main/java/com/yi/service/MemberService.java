@@ -5,7 +5,7 @@ import java.util.List;
 import com.yi.domain.Member;
 
 public interface MemberService {
-	public void insert(Member member);
+	public boolean insert(Member member);
 
 	public Member read(String id, String pw);
 
@@ -14,5 +14,7 @@ public interface MemberService {
 	public void delete(Member member);
 
 	public List<Member> selectByAll();
+	
+	public Member selectById(Member member);
 
 }

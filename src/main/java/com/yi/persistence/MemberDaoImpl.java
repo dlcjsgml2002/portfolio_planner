@@ -47,4 +47,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList(namespace + ".selectByAll");
 	}
 
+	@Override
+	public Member selectById(Member member) {
+		return sqlSession.selectOne(namespace + ".selectById", member);
+	}
+
 }

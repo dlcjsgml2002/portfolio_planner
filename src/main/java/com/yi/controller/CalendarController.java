@@ -34,18 +34,21 @@ public class CalendarController {
 	private PlanService planService;
 
 	@RequestMapping(value = "month", method = RequestMethod.GET)
-	public String monthGet(Model model) {
+	public String monthGet(Model model, int mno) {
 		logger.info("Month Get");
 
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH);
-		Date today = new Date();
+		Date today = new Date();;
+		
+		List<Plan> list = planService.selectByAll(mno);
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("year", year);
 		map.put("month", month);
 		map.put("today", today);
+		map.put("list", list);
 
 		model.addAttribute("map", map);
 
@@ -79,7 +82,7 @@ public class CalendarController {
 		map.put("list", list);
 		map.put("plan", plan);
 
-		model.addAttribute("map", map);  
+		model.addAttribute("map", map);
 
 		return "/calendar/day";
 	}

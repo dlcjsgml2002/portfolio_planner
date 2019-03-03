@@ -15,7 +15,7 @@
 		<result property="member.id" column="id"/>
 		<result property="member.pw" column="pw"/>
 		<result property="member.name" column="name"/>
-		<result property="member.eamil" column="eamil"/>
+		<result property="member.email" column="email"/>
 		<result property="member.admin" column="admin"/>
 	</resultMap>
 

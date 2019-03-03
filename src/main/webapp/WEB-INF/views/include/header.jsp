@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/include.css?m=2">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 </head>
 <body>
 	<header>
@@ -21,7 +24,7 @@
 				</c:if>
 				<c:if test="${login != null}">
 					<li>${login.name } 님 환영합네다</li>
-					<li><a href="${pageContext.request.contextPath}/user/logOut">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</div>
