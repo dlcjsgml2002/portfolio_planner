@@ -13,13 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.Exercise;
 import com.yi.domain.Plan;
+import com.yi.domain.PlanList;
 import com.yi.service.ExerciseService;
+import com.yi.service.PlanListService;
 import com.yi.service.PlanService;
 
 @Controller
@@ -32,20 +33,26 @@ public class CalendarController {
 	
 	@Autowired
 	private PlanService planService;
+	
+	@Autowired
+	private PlanListService planListService;
 
 	@RequestMapping(value = "month", method = RequestMethod.GET)
-	public String monthGet(Model model) {
+	public String monthGet(Model model, int mno) {
 		logger.info("Month Get");
 
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH);
-		Date today = new Date();
+		Date today = new Date();;
+		
+		List<Plan> list = planService.selectByAll(mno);
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("year", year);
 		map.put("month", month);
 		map.put("today", today);
+		map.put("list", list);
 
 		model.addAttribute("map", map);
 
@@ -73,13 +80,16 @@ public class CalendarController {
 		Date today = new Date();
 		List<String> list = exerciseService.selectPartByPart();
 		List<Plan> plan = planService.selectByAll(1);
+		List<PlanList> planList = planListService.selectByPno(1);
+		System.out.println(planList);
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("today", today);
 		map.put("list", list);
 		map.put("plan", plan);
+		map.put("planList", planList);
 
-		model.addAttribute("map", map);  
+		model.addAttribute("map", map);
 
 		return "/calendar/day";
 	}

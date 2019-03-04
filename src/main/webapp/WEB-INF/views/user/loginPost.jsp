@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-		location.href="${pageContext.request.contextPath }";
+		location.href="${pageContext.request.contextPath }/user/login";
 	</script>
 </body>
 </html>

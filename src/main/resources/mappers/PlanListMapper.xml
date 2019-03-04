@@ -22,6 +22,17 @@
 		values (#{plan.pno}, #{exercise.eno}, #{setcnt}, false)
 	</insert>
 	
+	<update id="updatePlanList">
+		update
+		set
+	</update>
+	
+	<delete id="deletePlanList">
+		delete
+		from planList
+		where pno = #{pno} and eno = #{eno}
+	</delete>
+	
 	<select id="selectByPno" resultMap="PlanListResult">
 		select p.pno, p.mno, p.title, p.startdate, p.enddate, p.exec, e.name, e.link, pl.setcnt, pl.exec
 		from plan_list as pl

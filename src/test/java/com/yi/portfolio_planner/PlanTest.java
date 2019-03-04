@@ -22,7 +22,7 @@ public class PlanTest {
 	@Autowired
 	private MemberDao memberDao;
 	
-	@Test
+	/*@Test
 	public void test01Insert() {
 		Plan plan = new Plan();
 		plan.setMember(memberDao.read("user01", "passward"));
@@ -40,6 +40,11 @@ public class PlanTest {
 		Plan plan = new Plan();
 		plan = planDao.selectByPno(1);
 		System.out.println(plan);
+	}*/
+	
+	@Test
+	public void test03SelectByAll() {
+		System.out.println(planDao.selectByAll(1));
 	}
 
 }

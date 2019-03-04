@@ -3,9 +3,9 @@
 <%@ include file="../include/header.jsp"%>
 <style>
 	div.item {
+		margin: 5px;
 		width: 100px;
 		float: left;
-		margin: 5px;
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>

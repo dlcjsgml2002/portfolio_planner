@@ -11,17 +11,14 @@
 				<form role="form" method="post" action="register" enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="form-group">
-							<label>Title</label> <input type="text" name="title"
-								class="form-control" placeholder="Enter Title">
+							<label>Title</label> <input type="text" name="title" class="form-control" placeholder="Enter Title">
 						</div>
 						<div class="form-group">
 							<label>Content</label>
-							<textarea rows="5" class="form-control" name="content"
-								placeholder="Enter Content"></textarea>
+							<textarea rows="5" class="form-control" name="content" placeholder="Enter Content"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Writer</label> <input type="text" name="writer"
-								class="form-control" placeholder="Enter Writer">
+							<label>Writer</label> <input type="text" name="writer" class="form-control" placeholder="Enter Writer">
 						</div>
 						<div class="form-group">
 							<label>Image File</label>

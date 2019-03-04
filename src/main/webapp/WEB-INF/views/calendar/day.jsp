@@ -3,37 +3,20 @@
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 	section {
 		margin: 10px auto;
 		width: 80%;
 		height: 760px;
 	}
-
-	table {
-		margin: 10px auto;
-		width: 100%;
-		border-collapse: collapse;
+	
+	#calendar_table tbody tr:first-child td {
+		
 	}
 	
-	th:first-child, td:first-child a {
-		color: red;
-	}
-	
-	th:last-child, td:last-child a {
-		color: blue;
-	}
-	
-	a {
-		color: black;
-		text-decoration: none;
-	}
-
-	th, td {
-		width: 100px;
-		height: 100px;
-		border: 1px solid black;
+	#calendar_table tbody tr td {
+		padding: 10px;
+		border: 1px solid #ddd;
 	}
 	
 	#calendar_menu {
@@ -42,6 +25,15 @@
 	
 	#calendar_menu a {
 		border: 1px solid black;
+	}
+	
+	.plan_item_div {
+		color: #424242;
+		position: relative;
+		display: block;
+		padding: 10px 15px;
+		margin-bottom: -1px;
+		background-color: #fff;
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -52,14 +44,14 @@
 </script>
 <script>
 	$(function(){
-		getPageList();
+		getExerciseList();
 		
 		$("#part").on("change", function(){
-			getPageList();
+			getExerciseList();
 		})
 	})
 
-	function getPageList() {
+	function getExerciseList() {
 		var part = $("#part").val();
 		$.ajax({
 			url : "${pageContext.request.contextPath}/calendar/dayajax",
@@ -68,48 +60,74 @@
 			dataType : "json",
 			success : function(json) {
 				console.log(json);
-				$("#exercise").empty();	// 계속되는 추가를 막기위한 초기화
+				
+				$("#exercise").empty();
 				
 				var source = $("#template1").html();
 				var f = Handlebars.compile(source);
 				var result = f(json);
+				
 				$("#exercise").append(result);
 				}
 			})
 		}
+	
+	function add_plan() {
+		$("#list").modal("show");
+	}
+	
+	function insert_plan() {
+		$("#insert").modal("show");
+	}
 
+	function get_plan_info(pno) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/modal/list",
+			type : "get",
+			data : {"pno": pno},
+			success : function(json) {
+				console.log(json);
+				}
+			})
+		}
 </script>
 <section>
 	<div id="calendar_menu">
-		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
-		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/month">Month</a>
-	</div>
-	<div id="calendar">
-		<img alt="" src="">
-		<a><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></a>
-		<img alt="" src="">
-		<ul>
-			<c:forEach var="plan" items="${map.plan }">
-				<li>${plan.title }</li>
-			</c:forEach>  
-		</ul>
+		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
+		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
+		<a href="${pageContext.request.contextPath}/calendar/month?mno=${login.mno }">Month</a>
 	</div>
 	
-	<div>
-	<h1>운동 추가하기</h1>
-	<p>카테고리</p>
-		<select id="part">
-			<c:forEach var="list" items="${map.list }">
-				<option value="${list }">${list }</option> 
-			</c:forEach>      
-		</select>
-		<select id="exercise">
-		</select>
-		<input type="date" placeholder="시작일">
-		<input type="date" placeholder="종료일">
-	</div>
-	<div id="info">
-	</div>
+	<table class="table" id="calendar_table">
+		<colgroup>
+			<col width="25%">
+			<col width="5%">
+		</colgroup>
+	
+		<thead>
+			<tr>
+				<th style="text-align: center; font-size: 25px"><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></th>
+				<th><button class="btn btn-primary" onclick="insert_plan()">계쇡 추가</button></th>
+				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="plan" items="${map.plan }">
+				<tr>
+					<td>
+						<a href="javascript:void(0)" onclick="get_plan_info(${plan.pno })">${plan.title }</a>
+					</td>
+	
+					<td>
+						<c:forEach var="list" items="${map.planList }">
+							<p><a href="${list.exercise.link }">${list.exercise.name }</a>${list.setcnt }개 ${list.exec }</p>
+						</c:forEach>
+					</td>
+				</tr>
+			</c:forEach>  
+		</tbody>
+	</table>
 </section>
+<%@ include file="../calendar/modal/list.jsp"%>
+<%@ include file="../calendar/modal/insert.jsp"%>
 <%@ include file="../include/footer.jsp"%>

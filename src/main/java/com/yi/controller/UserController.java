@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.Login;
 import com.yi.domain.Member;
@@ -38,6 +39,7 @@ public class UserController {
 		}
 		
 		Login login = new Login();
+		login.setMno(member.getMno());
 		login.setId(member.getId());
 		login.setName(member.getName());
 		
@@ -49,7 +51,7 @@ public class UserController {
 		logger.info("logout Get ----------");
 		session.invalidate();
 		
-		return "redirect:/board/list";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="info", method = RequestMethod.GET)
@@ -64,7 +66,18 @@ public class UserController {
 	
 	@RequestMapping(value="register", method = RequestMethod.GET)
 	public void registerGet() {
+		logger.info("register get ----------");
+	}
+	
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean registerPost(Member member) {
+		System.out.println(member);
+		boolean result = service.insert(member);
 		logger.info("health get ----------");
+		
+		return result;
+		
 	}
 	
 	@RequestMapping(value="search", method = RequestMethod.GET)

@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yi.domain.Board;
 import com.yi.domain.Criteria;
-import com.yi.domain.Member;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.service.BoardService;

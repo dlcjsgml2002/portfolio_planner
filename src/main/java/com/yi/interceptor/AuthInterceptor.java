@@ -18,13 +18,13 @@ public class AuthInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		Login dto = (Login) session.getAttribute("login");
+		Login login = (Login) session.getAttribute("login");
 		
-		if (dto != null) {
-			logger.info("session : " + dto);
+		if (login != null) {
+			logger.info("session : " + login);
 		}
 		
-		if (dto == null) { // 로그인을 하지 않은 상태
+		if (login == null) { // 로그인을 하지 않은 상태
 			saveDest(request);
 			response.sendRedirect(request.getContextPath() + "/user/login");
 			return false; // register controller로 가는 걸 막음

@@ -83,9 +83,14 @@
 					table += "<td></td>";
 				} else {
 					if(num == d && m == ${map.month} && y == ${map.year}) {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' class=''>" + num + "</a></td>";
+						table += "<ul>";
+						table += "<li>";
+						table += "";
+						table += "</li>";
+						table += "</ul>";
 					} else {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/today' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' class=''>" + num + "</a></td>";
 					}
 					num++;
 				}
@@ -115,6 +120,7 @@
 	})
 </script>
 <section>
+
 	<div id="calendar_menu">
 		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
 		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
