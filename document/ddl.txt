@@ -90,12 +90,9 @@ ALTER TABLE portfolio_planner.reply
 
 -- 계획
 CREATE TABLE portfolio_planner.plan (
-	pno       INT(10)      NOT NULL COMMENT '계획번호', -- 계획번호
-	mno       INT(10)      NULL     COMMENT '회원번호', -- 회원번호
-	title     VARCHAR(100) NULL     COMMENT '이름', -- 이름
-	startdate DATE         NULL     COMMENT '시작일자', -- 시작일자
-	enddate   DATE         NULL     COMMENT '종료일자', -- 종료일자
-	exec      BOOLEAN      NULL     COMMENT '실행여부' -- 실행여부
+	pno   INT(10)      NOT NULL COMMENT '계획번호', -- 계획번호
+	mno   INT(10)      NULL     COMMENT '회원번호', -- 회원번호
+	title VARCHAR(100) NULL     COMMENT '이름' -- 이름
 )
 COMMENT '계획';
 
@@ -119,10 +116,12 @@ COMMENT '첨부파일';
 
 -- 정보
 CREATE TABLE portfolio_planner.information (
-	mno     INT(10) NULL COMMENT '회원번호', -- 회원번호
-	weight  DOUBLE  NULL COMMENT '키', -- 키
-	height  DOUBLE  NULL COMMENT '몸무게', -- 몸무게
-	regdate DATE    NULL COMMENT '생성일자' -- 생성일자
+	mno     INT(10)     NULL COMMENT '회원번호', -- 회원번호
+	age     int(10)     NULL COMMENT '나이', -- 나이
+	gender  VARCHAR(10) NULL COMMENT '성별', -- 성별
+	weight  DOUBLE      NULL COMMENT '키', -- 키
+	height  DOUBLE      NULL COMMENT '몸무게', -- 몸무게
+	regdate DATE        NULL COMMENT '생성일자' -- 생성일자
 )
 COMMENT '정보';
 
@@ -134,6 +133,14 @@ CREATE TABLE portfolio_planner.plan_list (
 	exec   BOOLEAN NULL COMMENT '실행여부' -- 실행여부
 )
 COMMENT '계획 리스트';
+
+-- 일정
+CREATE TABLE portfolio_planner.plan_date (
+	pno     INT(10) NULL COMMENT '계획번호', -- 계획번호
+	appdate DATE    NULL COMMENT '적용일자', -- 적용일자
+	exec    BOOLEAN NULL COMMENT '실행여부' -- 실행여부
+)
+COMMENT '일정';
 
 -- 게시판
 ALTER TABLE portfolio_planner.board
@@ -203,6 +210,16 @@ ALTER TABLE portfolio_planner.plan_list
 		)
 		REFERENCES portfolio_planner.exercise ( -- 운동
 			eno -- 운동번호
+		);
+
+-- 일정
+ALTER TABLE portfolio_planner.plan_date
+	ADD CONSTRAINT FK_plan_TO_plan_date -- 계획 -> 일정
+		FOREIGN KEY (
+			pno -- 계획번호
+		)
+		REFERENCES portfolio_planner.plan ( -- 계획
+			pno -- 계획번호
 		);
 
 CREATE USER 'portfolio_lch'@'%';

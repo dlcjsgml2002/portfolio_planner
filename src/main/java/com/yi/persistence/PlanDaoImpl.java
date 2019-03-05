@@ -17,7 +17,7 @@ public class PlanDaoImpl implements PlanDao {
 
 	@Override
 	public void insert(Plan plan) {
-		sqlSession.insert(namespace + ".insert", plan);
+		sqlSession.insert(namespace + ".insertPlan", plan);
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class PlanDaoImpl implements PlanDao {
 
 	@Override
 	public Plan selectByPno(int pno) {
-		return sqlSession.selectOne(namespace + ".selectByPno", pno);
+		return sqlSession.selectOne(namespace + ".selectPlanByPno", pno);
 	}
 
 	@Override
 	public List<Plan> selectByAll(int mno) {
-		return sqlSession.selectList(namespace + ".selectByAll", mno);
+		return sqlSession.selectList(namespace + ".selectPlanByAll", mno);
 	}
 
 }

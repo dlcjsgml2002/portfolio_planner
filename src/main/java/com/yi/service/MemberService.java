@@ -16,5 +16,7 @@ public interface MemberService {
 	public List<Member> selectByAll();
 	
 	public Member selectById(Member member);
+	
+	public Member selectByMno(int mno);
 
 }

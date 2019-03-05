@@ -10,7 +10,7 @@ import com.yi.domain.PlanList;
 
 @Repository
 public class PlanListDaoImpl implements PlanListDao {
-	private static final String namespace = "com.yi.mapper.PlanListMapper";
+	private static final String namespace = "com.yi.mapper.PlanMapper";
 
 	@Autowired
 	private SqlSession sqlSession;

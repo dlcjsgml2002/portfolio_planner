@@ -40,4 +40,10 @@
 		where id = #{id}
 		limit 1
 	</select>
+	
+	<select id="selectByMno" resultType="Member">
+		select *
+		from member
+		where mno = #{mno}
+	</select>
 </mapper>

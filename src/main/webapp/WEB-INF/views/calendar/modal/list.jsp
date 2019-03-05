@@ -12,9 +12,6 @@
 	}
 </style>
 <script>
-	function insert_plan() {
-		$("#insert").modal("show");
-	}
 </script>
 <div id="list" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -25,7 +22,7 @@
 			</div>
 			<div class="modal-body">
 				<c:forEach var="list" items="${map.plan }">
-					<a>${list.title }</a><p>${list.setcnt }</p><a>${list.exec }</a><a style="font-size: 2em;">[+]</a><br>
+					<a>${list.title }</a><a style="font-size: 2em;">[+]</a><br>
 				</c:forEach>
 			</div>
 		</div>

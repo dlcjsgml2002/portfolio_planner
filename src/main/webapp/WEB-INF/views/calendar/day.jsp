@@ -107,7 +107,7 @@
 		<thead>
 			<tr>
 				<th style="text-align: center; font-size: 25px"><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></th>
-				<th><button class="btn btn-primary" onclick="insert_plan()">계쇡 추가</button></th>
+				<th><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
 				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
 			</tr>
 		</thead>
@@ -124,10 +124,11 @@
 						</c:forEach>
 					</td>
 				</tr>
-			</c:forEach>  
+			</c:forEach>
 		</tbody>
 	</table>
-</section>
+</section>                         
 <%@ include file="../calendar/modal/list.jsp"%>
 <%@ include file="../calendar/modal/insert.jsp"%>
+<%@ include file="../calendar/modal/update.jsp"%>
 <%@ include file="../include/footer.jsp"%>

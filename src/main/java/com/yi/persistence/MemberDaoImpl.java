@@ -51,5 +51,10 @@ public class MemberDaoImpl implements MemberDao {
 	public Member selectById(Member member) {
 		return sqlSession.selectOne(namespace + ".selectById", member);
 	}
+	
+	@Override
+	public Member selectByMno(int mno) {
+		return sqlSession.selectOne(namespace + ".selectByMno", mno);
+	}
 
 }

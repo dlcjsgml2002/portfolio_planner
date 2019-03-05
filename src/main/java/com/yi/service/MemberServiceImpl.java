@@ -57,4 +57,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectById(member);
 	}
 
+	@Override
+	public Member selectByMno(int mno) {
+		// TODO Auto-generated method stub
+		return dao.selectByMno(mno);
+	}
+
 }

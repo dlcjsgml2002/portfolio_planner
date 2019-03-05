@@ -15,8 +15,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">플랜 수정하기</h4>
-					<button type="button" class="btn btn-primary" >운동추가</button>
+				<h4 class="modal-title">계획 수정하기</h4>
+					<button type="button" class="btn btn-primary" >운동 추가</button>
 			</div>
 			<div class="modal-body">
 				<p>카테고리</p>

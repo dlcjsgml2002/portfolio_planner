@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.Exercise;
+import com.yi.domain.Member;
 import com.yi.domain.Plan;
+import com.yi.domain.PlanList;
 import com.yi.service.ExerciseService;
+import com.yi.service.MemberService;
+import com.yi.service.PlanListService;
 import com.yi.service.PlanService;
 
 @Controller
@@ -25,6 +32,12 @@ public class PlanController {
 
 	@Autowired
 	private PlanService planService;
+	
+	@Autowired
+	private PlanListService planListService;
+
+	@Autowired
+	private MemberService memberService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
@@ -52,16 +65,25 @@ public class PlanController {
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	@ResponseBody
-	public Plan insertPost(@RequestParam int pno) {
-		List<String> list = exerciseService.selectPartByPart();
-		Plan plan = planService.selectByPno(pno);
-		Map<String, Object> map = new HashMap<>();
+	public String insertPost(HttpSession session, int mno, String title, int[] eno, int[] setcnt) {
+		Plan plan = new Plan();
+		plan.setTitle(title);
+		plan.setMember(memberService.selectByMno(mno));
+		planService.insert(plan);
+		
+		
+		System.out.println("plan 번호 : " + plan.getPno());
+		System.out.println(eno);
+		for (int i = 0; i < eno.length; i++) {
+			PlanList planList = new PlanList();
+			planList.setPlan(plan);
+			planList.setExercise(exerciseService.selectByEno(eno[i]));
+			planList.setSetcnt(setcnt[i]);
+			planListService.insertPlanList(planList);
+		}
+		
 
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
+		return "redirect:/calendar/day";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)

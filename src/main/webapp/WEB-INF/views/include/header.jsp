@@ -23,7 +23,7 @@
 					<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 				</c:if>
 				<c:if test="${login != null}">
-					<li>${login.name } 님 환영합네다</li>
+					<li>${login.name }(${login.id }) 님 환영합네다</li>
 					<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				</c:if>
 			</ul>
@@ -37,12 +37,12 @@
 					<li><a href="#">작심삼일이란?</a></li>
 				</ul>
 			</li>
-			<li><a href="${pageContext.request.contextPath}/calendar/day">내 일정 확인</a>
+			<li><a href="${pageContext.request.contextPath}/calendar/day">내 일정확인</a>
 			</li>
 			<li><a href="#">내 정보 확인</a>
 				<ul class="submenu">
-					<li><a href="${pageContext.request.contextPath}/user/info">내 정보 관리</a></li>
-					<li><a href="${pageContext.request.contextPath}/user/health">내 운동 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/info">내 정보관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/health">내 운동관리</a></li>
 				</ul>
 			</li>
 			<li><a href="#">커뮤니티</a>

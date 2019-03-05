@@ -17,32 +17,32 @@ public class ExerciseDaoImpl implements ExerciseDao {
 
 	@Override
 	public void insert(Exercise exercise) {
-		sqlSession.insert(namespace + ".insert", exercise);
+		sqlSession.insert(namespace + ".insertExercise", exercise);
 	}
 
 	@Override
 	public void update(Exercise exercise) {
-		sqlSession.update(namespace + ".update", exercise);
+		sqlSession.update(namespace + ".updateExercise", exercise);
 	}
 
 	@Override
 	public void delete(int eno) {
-		sqlSession.delete(namespace + ".delete", eno);
+		sqlSession.delete(namespace + ".deleteExercise", eno);
 	}
 
 	@Override
 	public Exercise selectByEno(int eno) {
-		return sqlSession.selectOne(namespace + ".selectByEno", eno);
+		return sqlSession.selectOne(namespace + ".selectExerciseByEno", eno);
 	}
 
 	@Override
 	public List<Exercise> selectByAll() {
-		return sqlSession.selectList(namespace + ".selectByAll");
+		return sqlSession.selectList(namespace + ".selectExerciseByAll");
 	}
 
 	@Override
 	public List<Exercise> selectByPart(String part) {
-		return sqlSession.selectList(namespace + ".selectByPart", part);
+		return sqlSession.selectList(namespace + ".selectExerciseByPart", part);
 	}
 
 	@Override

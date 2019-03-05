@@ -3,12 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.ExerciseMapper">
-	<insert id="insert">
+	<insert id="insertExercise">
 		insert into exercise (part, name, link)
 		values (#{part}, #{name}, #{link})
 	</insert>
 	
-	<update id="update">
+	<update id="updateExercise">
 		update exercise
 		set part = #{part},
 			name = #{name},
@@ -16,24 +16,24 @@
 		where eno = #{eno}
 	</update>
 	
-	<delete id="delete">
+	<delete id="deleteExercise">
 		delete
 		from exercise
 		where eno = #{eno}
 	</delete>
 	
-	<select id="selectByAll" resultType="Exercise">
+	<select id="selectExerciseByAll" resultType="Exercise">
 		select *
 		from exercise
 	</select>
 
-	<select id="selectByEno" resultType="Exercise">
+	<select id="selectExerciseByEno" resultType="Exercise">
 		select *
 		from exercise
 		where eno = #{eno}
 	</select>
 
-	<select id="selectByPart" resultType="Exercise">
+	<select id="selectExerciseByPart" resultType="Exercise">
 		select *
 		from exercise
 		where part = #{part}

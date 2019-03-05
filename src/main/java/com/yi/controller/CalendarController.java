@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.Exercise;
+import com.yi.domain.Login;
 import com.yi.domain.Plan;
 import com.yi.domain.PlanList;
 import com.yi.service.ExerciseService;
@@ -74,14 +78,15 @@ public class CalendarController {
 	}
 
 	@RequestMapping(value = "day", method = RequestMethod.GET)
-	public String dayGet(Model model) {
+	public String dayGet(Model model, HttpSession session) {
 		logger.info("Day Get");
-
+		
+		Login login = (Login) session.getAttribute("login");
+		int mno = login.getMno();
 		Date today = new Date();
 		List<String> list = exerciseService.selectPartByPart();
-		List<Plan> plan = planService.selectByAll(1);
-		List<PlanList> planList = planListService.selectByPno(1);
-		System.out.println(planList);
+		List<Plan> plan = planService.selectByAll(mno);
+		List<PlanList> planList = planListService.selectByPno(mno);
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("today", today);

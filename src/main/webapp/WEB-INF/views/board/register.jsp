@@ -18,7 +18,7 @@
 							<textarea rows="5" class="form-control" name="content" placeholder="Enter Content"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Writer</label> <input type="text" name="writer" class="form-control" placeholder="Enter Writer">
+							<label>Writer</label> <input type="text" name="writer" class="form-control" value="${login.mno }" placeholder="${login.name }" readonly>
 						</div>
 						<div class="form-group">
 							<label>Image File</label>
