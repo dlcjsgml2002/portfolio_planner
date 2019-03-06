@@ -1,11 +1,16 @@
 package com.yi.domain;
 
+import java.util.List;
+
 public class Plan {
 	private int pno;
 	private String title;
 	private Member member;
+	private List<PlanList> planList;
+	private List<PlanDate> planDate;
 
-	public Plan() {}
+	public Plan() {
+	}
 
 	public Plan(int pno, String title, Member member) {
 		this.pno = pno;
@@ -37,9 +42,26 @@ public class Plan {
 		this.member = member;
 	}
 
+	public List<PlanList> getPlanList() {
+		return planList;
+	}
+
+	public void setPlanList(List<PlanList> planList) {
+		this.planList = planList;
+	}
+
+	public List<PlanDate> getPlanDate() {
+		return planDate;
+	}
+
+	public void setPlanDate(List<PlanDate> planDate) {
+		this.planDate = planDate;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Plan [pno=%s, title=%s, member=%s]", pno, title, member);
+		return String.format("Plan [pno=%s, title=%s, member=%s, planList=%s, planDate=%s]", pno, title, member,
+				planList, planDate);
 	}
 
 }

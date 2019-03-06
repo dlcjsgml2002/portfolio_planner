@@ -2,7 +2,10 @@ package com.yi.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PlanDate {
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date appDate;
 	private boolean exec;
 	private Plan plan;

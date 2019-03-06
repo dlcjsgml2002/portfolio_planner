@@ -27,7 +27,9 @@
 <div id="insert" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<form action="insert" method="post">
-			<input type="text" name="mno" value="${login.mno }">
+			<input type="text" name="mno" value="${login.mno }" hidden>
+			<input type="text" name="date" id="t" hidden>
+			
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">플랜 추가하기</h4>

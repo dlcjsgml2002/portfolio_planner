@@ -2,11 +2,15 @@ package com.yi.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Reply {
 	private int rno;
 	private String content;
 	private String writer;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regdate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date moddate;
 
 	public Reply() {}

@@ -42,15 +42,29 @@
 		<option value="{{eno}}">{{name}}</option>
 	{{/each}}
 </script>
+<script id="template2" type="text/x-handlebars-template">
+	{{#each.}}
+		<tr>
+			<td>
+				<p>{{member.name}}</p>
+				<p>{{planDate}}</p>
+				<p>{{planList}}</p>
+				<p>{{pno}}</p>
+				<p>{{title}}</p>
+			</td>
+		</tr>
+	{{/each}}
+</script>
 <script>
-	$(function(){
-		getExerciseList();
+	var today = null;
+	
+	function day(y, m, d) {
+		today = new Date(y, m, d);
+		var cale = "<th><a href='#' id='prev'>&lt;</a>" + y + "년 " + (m + 1) + "월" + d + "일<a href='#' id='next'>&gt;</a></th>";
 		
-		$("#part").on("change", function(){
-			getExerciseList();
-		})
-	})
-
+		$("#cale").html(cale);
+	}
+	
 	function getExerciseList() {
 		var part = $("#part").val();
 		$.ajax({
@@ -72,17 +86,40 @@
 			})
 		}
 	
+	function getPlanList() {
+		var time = today.getFullYear()  + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/dateajax",
+			type : "get",
+			data : {"mno" : ${login.mno},
+				"time": time},
+			dataType : "json",
+			success : function(json) {
+				console.log(json);
+				
+				$("#cal_tbody").empty();
+				
+				var source = $("#template2").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				
+				$("#cal_tbody").append(result);
+				}
+			})
+		}
+	                   
 	function add_plan() {
 		$("#list").modal("show");
 	}
 	
 	function insert_plan() {
+		$("#t").val(today);
 		$("#insert").modal("show");
 	}
 
 	function get_plan_info(pno) {
 		$.ajax({
-			url : "${pageContext.request.contextPath}/calendar/modal/list",
+			url : "${pageContext.request.contextPath}/calendar/day",
 			type : "get",
 			data : {"pno": pno},
 			success : function(json) {
@@ -90,6 +127,31 @@
 				}
 			})
 		}
+	
+	$(function(){
+		var date = new Date(${map.today.time});
+		day(date.getFullYear(), date.getMonth(), date.getDate() );
+		
+		$(document).on("click", "#prev", function(){
+			today.setDate( today.getDate() - 1 );
+			day(today.getFullYear(), today.getMonth(), today.getDate() );
+			getPlanList();
+		})
+		
+		$(document).on("click", "#next", function(){
+			today.setDate( today.getDate() + 1 );
+			day(today.getFullYear(), today.getMonth(), today.getDate() );
+			getPlanList();
+		})
+		
+		getExerciseList();
+		getPlanList();
+		
+		$("#part").on("change", function(){
+			getExerciseList();
+		})
+	})
+	
 </script>
 <section>
 	<div id="calendar_menu">
@@ -105,28 +167,33 @@
 		</colgroup>
 	
 		<thead>
+			<tr id="cale">
+				
+			</tr>
+			
 			<tr>
 				<th style="text-align: center; font-size: 25px"><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></th>
 				<th><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
 				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
 			</tr>
 		</thead>
-		<tbody>
-			<c:forEach var="plan" items="${map.plan }">
+		<tbody id="cal_tbody">
+			<%-- <c:forEach var="plan" items="${map.plan }">
 				<tr>
 					<td>
 						<a href="javascript:void(0)" onclick="get_plan_info(${plan.pno })">${plan.title }</a>
 					</td>
-	
+				</tr>
+				<tr>
 					<td>
-						<c:forEach var="list" items="${map.planList }">
-							<p><a href="${list.exercise.link }">${list.exercise.name }</a>${list.setcnt }개 ${list.exec }</p>
+						<c:forEach var="planList" items="${plan.planList }">
+							<p><a href="${planList.exercise.link }">${planList.exercise.name }</a>${planList.setcnt }개 ${planList.exec }</p>
 						</c:forEach>
 					</td>
 				</tr>
-			</c:forEach>
+			</c:forEach> --%>
 		</tbody>
-	</table>
+	</table>	
 </section>                         
 <%@ include file="../calendar/modal/list.jsp"%>
 <%@ include file="../calendar/modal/insert.jsp"%>

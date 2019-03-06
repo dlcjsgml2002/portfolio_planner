@@ -1,5 +1,6 @@
 package com.yi.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yi.domain.Exercise;
-import com.yi.domain.Member;
 import com.yi.domain.Plan;
+import com.yi.domain.PlanDate;
 import com.yi.domain.PlanList;
 import com.yi.service.ExerciseService;
 import com.yi.service.MemberService;
@@ -65,15 +65,13 @@ public class PlanController {
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String insertPost(HttpSession session, int mno, String title, int[] eno, int[] setcnt) {
+	public String insertPost(HttpSession session, int mno, String title, int[] eno, int[] setcnt, Date date) {
+		System.out.println(date);
 		Plan plan = new Plan();
 		plan.setTitle(title);
 		plan.setMember(memberService.selectByMno(mno));
 		planService.insert(plan);
 		
-		
-		System.out.println("plan 번호 : " + plan.getPno());
-		System.out.println(eno);
 		for (int i = 0; i < eno.length; i++) {
 			PlanList planList = new PlanList();
 			planList.setPlan(plan);
@@ -82,7 +80,11 @@ public class PlanController {
 			planListService.insertPlanList(planList);
 		}
 		
-
+		PlanDate planDate = new PlanDate();
+		planDate.setPlan(plan);
+		planDate.setAppDate(date);
+		planService.insertPlanDate(planDate);
+		
 		return "redirect:/calendar/day";
 	}
 

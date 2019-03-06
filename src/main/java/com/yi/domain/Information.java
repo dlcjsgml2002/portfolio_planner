@@ -2,11 +2,14 @@ package com.yi.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Information {
 	private int age;
 	private String gender;
 	private double weight;
 	private double height;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regdate;
 	private Member member;
 

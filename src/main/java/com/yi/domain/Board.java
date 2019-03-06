@@ -3,11 +3,15 @@ package com.yi.domain;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Board {
 	private int bno;
 	private String title;
 	private String content;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regdate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date moddate;
 	private int viewcnt;
 	private int replycnt;

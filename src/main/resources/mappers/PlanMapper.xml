@@ -36,7 +36,7 @@
 		<result property="plan.title" column="title" />
 	</resultMap>
 	
-	<insert id="insertPlan">
+	<insert id="insertPlan" useGeneratedKeys="true" keyProperty="pno">
 		insert into plan (mno, title)
 		values (#{member.mno}, #{title})
 	</insert>
@@ -87,6 +87,23 @@
 	
 	<insert id="insertPlanDate">
 		insert plan_date (pno, appdate, exec)
-		values (#{pno}, #{appdate}, #{exec})
+		values (#{plan.pno}, #{appDate}, false)
 	</insert>
+	
+	<select id="selectPlanDateByAppDate" resultMap="PlanDateResult">
+		select p.pno, p.mno, p.title, pd.appdate, pd.exec
+		from plan as p
+		join plan_date as pd on pd.pno = p.pno
+		where pd.appdate = #{appDate};
+	</select>
+	
+	<select id="selectPlanByAppDate" resultMap="PlanResult">
+		select p.pno, p.mno, p.title, pl.eno, e.name, e.link, pl.setcnt, pl.`exec`, pd.appdate, pd.`exec`
+		from plan as p
+		join plan_list as pl on pl.pno = p.pno
+		join plan_date as pd on pd.pno = p.pno
+		join exercise as e on e.eno = pl.eno
+		where p.mno = #{mno} and pd.appdate = #{appDate};
+	</select>
+	
 </mapper>
