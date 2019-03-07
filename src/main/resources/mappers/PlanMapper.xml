@@ -78,7 +78,7 @@
 	</delete>
 	
 	<select id="selectByPno" resultMap="PlanListResult">
-		select p.pno, p.mno, p.title, e.name, e.link, pl.setcnt, pl.exec
+		select p.pno, p.mno, p.title, e.eno, e.name, e.link, pl.setcnt, pl.exec
 		from plan_list as pl
 		join plan as p on p.pno = pl.pno
 		join exercise as e on e.eno = pl.eno
@@ -97,12 +97,10 @@
 		where pd.appdate = #{appDate};
 	</select>
 	
-	<select id="selectPlanByAppDate" resultMap="PlanResult">
-		select p.pno, p.mno, p.title, pl.eno, e.name, e.link, pl.setcnt, pl.`exec`, pd.appdate, pd.`exec`
+	<select id="selectPlanByAppDate" resultMap="PlanDateResult">
+		select p.pno, p.title, pd.appdate, pd.exec
 		from plan as p
-		join plan_list as pl on pl.pno = p.pno
 		join plan_date as pd on pd.pno = p.pno
-		join exercise as e on e.eno = pl.eno
 		where p.mno = #{mno} and pd.appdate = #{appDate};
 	</select>
 	
