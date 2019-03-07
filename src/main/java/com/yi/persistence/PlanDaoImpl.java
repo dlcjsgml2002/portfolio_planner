@@ -57,7 +57,7 @@ public class PlanDaoImpl implements PlanDao {
 	}
 
 	@Override
-	public List<Plan> selectPlanByAppDate(int mno, Date appDate) {
+	public List<PlanDate> selectPlanByAppDate(int mno, Date appDate) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("mno", mno);

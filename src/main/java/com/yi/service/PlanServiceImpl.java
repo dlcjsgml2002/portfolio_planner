@@ -1,9 +1,7 @@
 package com.yi.service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +53,7 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
-	public List<Plan> selectPlanByAppDate(int mno, Date appDate) {
+	public List<PlanDate> selectPlanByAppDate(int mno, Date appDate) {
 		// TODO Auto-generated method stub
 		return planDao.selectPlanByAppDate(mno, appDate);
 	}

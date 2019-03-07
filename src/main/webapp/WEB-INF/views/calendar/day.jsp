@@ -46,11 +46,12 @@
 	{{#each.}}
 		<tr>
 			<td>
-				<p>{{member.name}}</p>
-				<p>{{planDate}}</p>
-				<p>{{planList}}</p>
-				<p>{{pno}}</p>
-				<p>{{title}}</p>
+				<p>{{appDate}}</p>
+				<p>{{exec}}</p>
+				<p>{{plan.title}}</p>
+				{{#plan.planList}}
+					<p>{{exercise.name}}</p>
+				{{/plan.planList}}
 			</td>
 		</tr>
 	{{/each}}
@@ -91,8 +92,10 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/calendar/dateajax",
 			type : "get",
-			data : {"mno" : ${login.mno},
-				"time": time},
+			data : {
+				"mno" : ${login.mno},
+				"time": time
+				},
 			dataType : "json",
 			success : function(json) {
 				console.log(json);

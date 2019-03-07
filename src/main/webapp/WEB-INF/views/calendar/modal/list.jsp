@@ -12,6 +12,7 @@
 	}
 </style>
 <script>
+	
 </script>
 <div id="list" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -22,7 +23,7 @@
 			</div>
 			<div class="modal-body">
 				<c:forEach var="list" items="${map.plan }">
-					<a>${list.title }</a><a style="font-size: 2em;">[+]</a><br>
+					<a>${list.title }</a><a style="font-size: 2em;" class="insert_button">[+]</a><br>
 				</c:forEach>
 			</div>
 		</div>

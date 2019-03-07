@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,6 @@ import com.yi.domain.Login;
 import com.yi.domain.Plan;
 import com.yi.domain.PlanDate;
 import com.yi.domain.PlanList;
-import com.yi.persistence.PlanDao;
 import com.yi.service.ExerciseService;
 import com.yi.service.PlanListService;
 import com.yi.service.PlanService;
@@ -122,26 +120,29 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "dateajax", method = RequestMethod.GET)
-	public ResponseEntity<List<Plan>> planDate(int mno, String time) throws ParseException {
-		ResponseEntity<List<Plan>> entity = null;
-		System.out.println("mno : " + mno);
-		System.out.println("time : " + time);
+	public ResponseEntity<List<PlanDate>> planInfo(int mno, String time) throws ParseException {
+		ResponseEntity<List<PlanDate>> entity = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date appDate = sdf.parse(time);
-		System.out.println("appDate : " + appDate);
+		System.out.println("mno : " + mno + " time : " + time);
 
 		try {
-			List<Plan> list = planService.selectPlanByAppDate(mno, appDate);
-			System.out.println("list : " + list);
-			for (Plan p : list) {
-				List<PlanList> planList = planListService.selectByPno(p.getPno());
-				System.out.println("p : " + p);
-				System.out.println("planList : " + planList);
-				p.setPlanList(planList);
-				System.out.println("p : " + p);
+			List<PlanDate> planDateList = planService.selectPlanByAppDate(mno, appDate);
+			for (PlanDate pd : planDateList) {
+				Plan plan = planService.selectByPno(pd.getPlan().getPno());
+				pd.setPlan(plan);
+				System.out.println(plan);
+				List<PlanList> planList = planListService.selectByPno(plan.getPno());
+				plan.setPlanList(planList);
+				for (PlanList pl : planList) {
+					Exercise exercise = exerciseService.selectByEno(pl.getExercise().getEno());
+					System.out.println(exercise);
+				}
+				System.out.println(planList);
 			}
-			System.out.println("list : " + list);
-			entity = new ResponseEntity<List<Plan>>(list, HttpStatus.OK);
+			System.out.println(planDateList);
+			
+			entity = new ResponseEntity<List<PlanDate>>(planDateList, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -150,5 +151,20 @@ public class CalendarController {
 
 		return entity;
 	}
+	
+	/*@RequestMapping(value = "listajax", method = RequestMethod.POST)
+	public ResponseEntity<PlanList> listAppend(int mno, String time) throws ParseException {
+		ResponseEntity<planList> entity = null;
+
+		try {
+			entity = new ResponseEntity<>(, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}*/
 
 }

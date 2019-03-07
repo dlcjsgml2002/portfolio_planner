@@ -21,6 +21,6 @@ public interface PlanDao {
 	
 	public List<PlanDate> selectPlanDateByAppDate(Date appDate);
 	
-	public List<Plan> selectPlanByAppDate(int mno, Date appDate);
+	public List<PlanDate> selectPlanByAppDate(int mno, Date appDate);
 
 }
