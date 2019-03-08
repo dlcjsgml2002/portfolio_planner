@@ -104,4 +104,11 @@
 		where p.mno = #{mno} and pd.appdate = #{appDate};
 	</select>
 	
+	<select id="selectPlanDateByMonth" resultMap="PlanDateResult">
+		select pd.pno, pd.appdate, pd.exec, p.pno, p.mno, p.title
+		from plan_date as pd
+		join plan as p on p.pno = pd.pno
+		where p.mno = #{mno} and pd.appdate between #{startDate} and #{endDate};
+	</select>
+	
 </mapper>

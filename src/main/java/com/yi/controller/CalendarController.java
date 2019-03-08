@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -152,12 +154,27 @@ public class CalendarController {
 		return entity;
 	}
 	
-	/*@RequestMapping(value = "listajax", method = RequestMethod.POST)
-	public ResponseEntity<PlanList> listAppend(int mno, String time) throws ParseException {
-		ResponseEntity<planList> entity = null;
-
+	@RequestMapping(value = "testajax", method = RequestMethod.POST)
+	public ResponseEntity<PlanDate> listAppend(int pno, String date) throws ParseException {
+		ResponseEntity<PlanDate> entity = null;
+		System.out.println("pno : " + pno + ", date : " + date);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date appDate = sdf.parse(date);
+		System.out.println("appDate : " + appDate);
+		
 		try {
-			entity = new ResponseEntity<>(, HttpStatus.OK);
+			Plan plan = new Plan();
+			plan.setPno(pno);
+			System.out.println("plan : " + plan);
+			
+			PlanDate planDate = new PlanDate();
+			planDate.setPlan(plan);
+			planDate.setAppDate(appDate);
+			System.out.println("planDate : " + planDate);
+			
+			planService.insertPlanDate(planDate);
+			
+			entity = new ResponseEntity<PlanDate>(planDate, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -165,6 +182,36 @@ public class CalendarController {
 		}
 
 		return entity;
-	}*/
+	}
+	
+	@RequestMapping(value = "monthajax", method = RequestMethod.GET)
+	public ResponseEntity<List<PlanDate>> monthDate(int mno, String month) throws ParseException {
+		ResponseEntity<List<PlanDate>> entity = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+		Date startDate = sdf.parse(month);
+		Date endDate = sdf.parse(month);
+		startDate.setDate(1);		
+		endDate.setMonth(endDate.getMonth() + 1);
+		endDate.setDate(endDate.getDate() - 1);
+		System.out.println("mno : " + mno);
+		System.out.println("startDate : " + startDate);
+		System.out.println("endDate : " + endDate);
+		
+		try {
+			List<PlanDate> planDateList = planService.selectPlanDateByMonth(mno, startDate, endDate);
+			for (PlanDate pd : planDateList) {
+				Plan plan = planService.selectByPno(pd.getPlan().getPno());
+				pd.setPlan(plan);
+			}
+			
+			entity = new ResponseEntity<List<PlanDate>>(planDateList, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<List<PlanDate>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
 
 }

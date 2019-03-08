@@ -22,5 +22,7 @@ public interface PlanDao {
 	public List<PlanDate> selectPlanDateByAppDate(Date appDate);
 	
 	public List<PlanDate> selectPlanByAppDate(int mno, Date appDate);
+	
+	public List<PlanDate> selectPlanDateByMonth(int mno, Date startDate, Date endDate);
 
 }

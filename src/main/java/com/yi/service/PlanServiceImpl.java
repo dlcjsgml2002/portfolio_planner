@@ -58,4 +58,10 @@ public class PlanServiceImpl implements PlanService {
 		return planDao.selectPlanByAppDate(mno, appDate);
 	}
 
+	@Override
+	public List<PlanDate> selectPlanDateByMonth(int mno, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return planDao.selectPlanDateByMonth(mno, startDate, endDate);
+	}
+
 }

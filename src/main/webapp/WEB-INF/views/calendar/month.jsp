@@ -43,9 +43,43 @@
 		border: 1px solid black;
 	}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="template1" type="text/x-handlebars-template">
+	<li>{{title}}</li>
+</script>
 <script>
 	var today = null;
 	var lastArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+	function getMonthList() {
+		var month = today.getFullYear() + "-" + (today.getMonth() + 1);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/monthajax",
+			type : "get",
+			data : {
+				"mno": ${login.mno},
+				"month": month
+				},
+			dataType : "json",
+			success : function(json) {
+				console.log(json);
+				
+				for (var i = 0; i < json.length; i++) {
+					var date = new Date(json[i].appDate);
+					var day = date.getDate();
+					
+					console.log(date.getDate());
+					
+					var source = $("#template1").html();
+					var f = Handlebars.compile(source);
+					var result = f(json[i].plan);
+					
+					$("td a[value=" + day + "] + ul").append(result);
+				}
+				             
+				}
+			})
+		}
 	
 	function month(y, m, d) {
 		today = new Date(y, m, d);
@@ -82,15 +116,17 @@
 				} else if(num > last) {
 					table += "<td></td>";
 				} else {
+					var time = y + "-" + (m + 1) + "-" + num;
 					if(num == d && m == ${map.month} && y == ${map.year}) {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' value='" + num + "'>" + num + "</a>";
 						table += "<ul>";
-						table += "<li>";
-						table += "";
-						table += "</li>";
 						table += "</ul>";
+						table += "</td>";
 					} else {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' class=''>" + num + "</a></td>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' value='" + num + "'>" + num + "</a>";
+						table += "<ul>";
+						table += "</ul>";
+						table += "</td>";
 					}
 					num++;
 				}
@@ -100,6 +136,8 @@
 		table += "</table>";
 		
 		$("#calendar").html(table);
+		
+		getMonthList();
 	}
 	
 	
@@ -120,11 +158,10 @@
 	})
 </script>
 <section>
-
 	<div id="calendar_menu">
-		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
-		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/month">Month</a>
+		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
+		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
+		<a href="${pageContext.request.contextPath}/calendar/month?mno=${login.mno }">Month</a>
 	</div>
 	<div id="calendar">
 		

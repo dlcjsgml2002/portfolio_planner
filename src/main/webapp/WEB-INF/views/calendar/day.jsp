@@ -46,11 +46,13 @@
 	{{#each.}}
 		<tr>
 			<td>
-				<p>{{appDate}}</p>
-				<p>{{exec}}</p>
-				<p>{{plan.title}}</p>
+				<p>{{plan.title}}
+				<button>{{exec}}</button>
+				<button class="del_pl">빼기</button></p>
 				{{#plan.planList}}
-					<p>{{exercise.name}}</p>
+					<p>
+						<a href="{{exercise.link}}">{{exercise.name}}</a>
+					</p>
 				{{/plan.planList}}
 			</td>
 		</tr>
@@ -153,6 +155,10 @@
 		$("#part").on("change", function(){
 			getExerciseList();
 		})
+		
+		$(document).on("click", ".del_pl", function(){
+			$(this).parent().parent().remove();
+		})
 	})
 	
 </script>
@@ -175,7 +181,6 @@
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; font-size: 25px"><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></th>
 				<th><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
 				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
 			</tr>

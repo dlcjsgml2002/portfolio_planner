@@ -66,4 +66,15 @@ public class PlanDaoImpl implements PlanDao {
 		return sqlSession.selectList(namespace + ".selectPlanByAppDate", map);
 	}
 
+	@Override
+	public List<PlanDate> selectPlanDateByMonth(int mno, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("mno", mno);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		
+		return sqlSession.selectList(namespace + ".selectPlanDateByMonth", map);
+	}
+
 }

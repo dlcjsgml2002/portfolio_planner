@@ -4,24 +4,38 @@
 <%@ page session="false"%>
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <style>
-	#banner {
-		width: 800px;
+	#slider_form {
+		margin: 10% auto;
+		width: 80%;
+	}
+	
+	.slider img {
+		width: 100%;
+		height: 400px;
 	}
 </style>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.slider').bxSlider();
 	});
 </script>
 <section>
-	<div id="banner">
+	<div id="slider_form">
 		<div class="slider">
-			<div>I am a slide.</div>
-		    <div>I am another slide.</div>
-		    <div>I am another another slide.</div>
+			<div>
+				<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+				<p>1</p>
+			</div>
+		    <div>
+		    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+				<p>2</p>
+		    </div>
+		    <div>
+		    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+				<p>3</p>
+		    </div>
 		</div>
 	</div>
 </section>
