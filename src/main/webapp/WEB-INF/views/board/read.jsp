@@ -74,7 +74,7 @@
 					<h3 class="box-title">ADD NEW REPLY</h3>
 				</div>
 				<div class="box-body">
-					<label>Writer</label> <input type="text" class="form-control" placeholder="User Id" id="newReplyWriter">
+					<label>Writer</label> <input type="text" class="form-control" value="${login.name }" placeholder="${login.name }" id="newReplyWriter" readonly>
 						<label>Reply Text</label> <input type="text" class="form-control" placeholder="Reply Text" id="newReplyText">
 				</div>
 				<div class="box-footer">

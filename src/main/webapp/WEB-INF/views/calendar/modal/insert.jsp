@@ -15,12 +15,19 @@
 	$(function(){
 		$("#plus").on("click", function(){
 			console.log($("#exercise").val());
-			var info = "<p>" + $("#exercise").text() + "" +  $("#setcnt").val() + "회</p>"
+			
+			var info = "<p>" + $("#exercise").text() + " " +  $("#setcnt").val() + "분/회  " + $("#setcnt").val() + "세트</p>"
 			var eno = "<input type='text' name='eno' value='" + $("#exercise").val() + "' hidden>";
+			var execnt = "<input type='text' name='execnt' value='" + $("#execnt").val() + "' hidden>";
 			var setcnt = "<input type='text' name='setcnt' value='" + $("#setcnt").val() + "' hidden>";
+			
 			$("#choose").append(info);
 			$("#choose").append(eno);
+			$("#choose").append(execnt);
 			$("#choose").append(setcnt);
+			
+			$("#execnt").val().empty();
+			$("#setcnt").val().empty(); 
 		})
 	})
 </script>
@@ -37,7 +44,7 @@
 				<div class="modal-body">
 					<p>
 						<label>플랜 이름</label>
-						<input type="text" name="title">
+						<input type="text" name="title" placeholder="운동 계획의 이름을 입력해주세요.">
 					</p>
 					<select id="part">
 						<c:forEach var="list" items="${map.list }">
@@ -46,6 +53,7 @@
 					</select>
 					<select id="exercise">
 					</select>
+					<input type="text" id="execnt">분/회<br>
 					<input type="text" id="setcnt">
 					<button type="button" id="plus">추가하기</button>
 					</div>

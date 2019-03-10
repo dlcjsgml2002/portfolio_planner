@@ -12,12 +12,17 @@
 		<result property="member.pw" column="pw" />
 		<result property="member.name" column="name" />
 		<result property="member.email" column="email" />
+		<result property="member.age" column="age" />
+		<result property="member.gender" column="gender" />
+		<result property="member.weight" column="weight" />
+		<result property="member.height" column="height" />
+		<result property="member.regdate" column="regdate" />
 		<result property="member.admin" column="admin" />
 	</resultMap>
 
 	<resultMap type="planList" id="PlanListResult">
+		<result property="execnt" column="execnt" />
 		<result property="setcnt" column="setcnt" />
-		<result property="exec" column="exec" />
 		
 		<result property="plan.pno" column="pno" />
 		<result property="plan.title" column="title" />
@@ -29,8 +34,8 @@
 	</resultMap>
 	
 	<resultMap type="planDate" id="PlanDateResult">
+		<result property="pdno" column="pdno" />
 		<result property="appDate" column="appdate" />
-		<result property="exec" column="exec" />
 		
 		<result property="plan.pno" column="pno" />
 		<result property="plan.title" column="title" />
@@ -67,18 +72,18 @@
 	</select>
 	
 	<insert id="insertPlanList">
-		insert plan_list (pno, eno, setcnt, exec)
-		values (#{plan.pno}, #{exercise.eno}, #{setcnt}, false)
+		insert plan_list (pno, eno, execnt, setcnt)
+		values (#{plan.pno}, #{exercise.eno}, #{execnt}, #{setcnt})
 	</insert>
 	
 	<delete id="deletePlanList">
 		delete
-		from planList
+		from planlist
 		where pno = #{pno} and eno = #{eno}
 	</delete>
 	
-	<select id="selectByPno" resultMap="PlanListResult">
-		select p.pno, p.mno, p.title, e.eno, e.name, e.link, pl.setcnt, pl.exec
+	<select id="selectPlanListByPno" resultMap="PlanListResult">
+		select p.pno, p.mno, p.title, e.eno, e.name, e.link, pl.setcnt, pl.execnt
 		from plan_list as pl
 		join plan as p on p.pno = pl.pno
 		join exercise as e on e.eno = pl.eno
@@ -86,22 +91,47 @@
 	</select>
 	
 	<insert id="insertPlanDate">
-		insert plan_date (pno, appdate, exec)
+		insert plan_date (pno, appdate, execute)
 		values (#{plan.pno}, #{appDate}, false)
 	</insert>
 	
 	<select id="selectPlanDateByAppDate" resultMap="PlanDateResult">
-		select p.pno, p.mno, p.title, pd.appdate, pd.exec
+		select p.pno, p.mno, p.title, pd.appdate, pd.execute, pd.pdno
 		from plan as p
 		join plan_date as pd on pd.pno = p.pno
 		where pd.appdate = #{appDate};
 	</select>
 	
 	<select id="selectPlanByAppDate" resultMap="PlanDateResult">
-		select p.pno, p.title, pd.appdate, pd.exec
+		select p.pno, p.title, pd.appdate, pd.execute, pd.pdno
 		from plan as p
 		join plan_date as pd on pd.pno = p.pno
 		where p.mno = #{mno} and pd.appdate = #{appDate};
 	</select>
+	
+	<select id="selectPlanDateByMonth" resultMap="PlanDateResult">
+		select pd.pno, pd.appdate, pd.execute, p.pno, p.mno, p.title, pd.pdno
+		from plan_date as pd
+		join plan as p on p.pno = pd.pno
+		where p.mno = #{mno} and pd.appdate between #{startDate} and #{endDate};
+	</select>
+	
+	<select id="selectPlanDate" resultMap="PlanDateResult">
+		select *
+		from plan_date
+		where pdno = #{pdno};
+	</select>
+	
+	<update id="updatePlanDate">
+		update plan_date
+		set execute = #{execute}
+		where pdno = #{pdno};
+	</update>
+	
+	<delete id="deletePlanDate">
+		delete
+		from plan_date
+		where pdno = #{pdno};
+	</delete>
 	
 </mapper>

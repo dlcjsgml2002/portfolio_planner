@@ -42,8 +42,42 @@
 		border: 1px solid black;
 	}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="template1" type="text/x-handlebars-template">
+	<li>{{title}}</li>
+</script>
 <script>
 	var today = null;
+	
+	function getMonthList() {
+		var month = today.getFullYear() + "-" + (today.getMonth() + 1);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/monthajax",
+			type : "get",
+			data : {
+				"mno": ${login.mno},
+				"month": month
+				},
+			dataType : "json",
+			success : function(json) {
+				console.log(json);
+				
+				for (var i = 0; i < json.length; i++) {
+					var date = new Date(json[i].appDate);
+					var day = date.getDate();
+					
+					console.log(date.getDate());
+					
+					var source = $("#template1").html();
+					var f = Handlebars.compile(source);
+					var result = f(json[i].plan);
+					
+					$("td a[value=" + day + "] + ul").append(result);
+				}
+				             
+				}
+			})
+		}
 	
 	function week(y, m, d) {
 		today = new Date(y, m, d);
@@ -67,14 +101,20 @@
 		for (var i = 0; i < day; i++) {
 			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 			today.setDate(today.getDate() - (day - i));
-			table += "<td><a>" + (today.getDate()) + "</a></td>";
+			table += "<td>";
+			table += "<a href='' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
+			table += "<ul></ul>";
+			table += "</td>";
 			today = date;
-		}
+		}                
 		                                     
 		for (var i = day; i < 7; i++) {
 			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 			today.setDate(today.getDate() - (day - i));
-			table += "<td><a>" + (today.getDate()) + "</a></td>";
+			table += "<td>";
+			table += "<a href='' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
+			table += "<ul></ul>";
+			table += "</td>";
 			today = date;
 		}
 		
@@ -82,6 +122,7 @@
 		table += "</table>";
 		                                
 		$("#calendar").html(table);
+		getMonthList();
 	}
 	
 	
@@ -103,9 +144,9 @@
 </script>
 <section>
 	<div id="calendar_menu">
-		<a href="${pageContext.request.contextPath}/calendar/day">Day</a>
-		<a href="${pageContext.request.contextPath}/calendar/week">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/month">Month</a>
+		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
+		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
+		<a href="${pageContext.request.contextPath}/calendar/month?mno=${login.mno }">Month</a>
 	</div>
 	<div id="calendar">
 		

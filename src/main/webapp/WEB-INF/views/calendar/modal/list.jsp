@@ -11,8 +11,54 @@
 		min-height: 500px;
 	}
 </style>
-<script>
-	
+<script>                                              
+	$(function() {
+		$(".btn_plan_insert").on("click", function() {
+			var date = today.getFullYear()  + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/calendar/testajax",
+				type : "post",
+				data : {
+					"pno": $(this).val(),
+					"date": date
+					},
+				dataType : "json",
+				success : function(json) {
+					console.log(json);
+					}
+				})
+			})
+		$(".btn_plan_update").on("click", function() {
+			var date = today.getFullYear()  + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/calendar/testajax",
+				type : "post",
+				data : {
+					"pno": $(this).val(),
+					"date": date
+					},
+				dataType : "json",
+				success : function(json) {
+					console.log(json);
+					}
+				})
+			})
+		$(".btn_plan_delete").on("click", function() {
+			var date = today.getFullYear()  + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/calendar/testajax",
+				type : "post",
+				data : {
+					"pno": $(this).val(),
+					"date": date
+					},
+				dataType : "json",
+				success : function(json) {
+					console.log(json);
+					}
+				})
+			})
+		})
 </script>
 <div id="list" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -23,7 +69,13 @@
 			</div>
 			<div class="modal-body">
 				<c:forEach var="list" items="${map.plan }">
-					<a>${list.title }</a><a style="font-size: 2em;" class="insert_button">[+]</a><br>
+					<p>
+						<a>${list.pno }</a>
+						<a>${list.title }</a>
+						<button class="btn_plan_insert" value="${list.pno }">추가하기</button>
+						<button class="btn_plan_update" value="${list.pno }">수정하기</button>
+						<button class="btn_plan_delete" value="${list.pno }">삭제하기</button>
+					</p>
 				</c:forEach>
 			</div>
 		</div>

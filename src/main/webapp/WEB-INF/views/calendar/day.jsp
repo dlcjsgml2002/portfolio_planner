@@ -46,11 +46,13 @@
 	{{#each.}}
 		<tr>
 			<td>
-				<p>{{appDate}}</p>
-				<p>{{exec}}</p>
-				<p>{{plan.title}}</p>
+				<p>{{plan.title}}
+				<button class="execute_pl" value="{{pdno}}">{{execute}}</button>
+				<button class="del_pl" value="{{pdno}}">빼기</button></p>
 				{{#plan.planList}}
-					<p>{{exercise.name}}</p>
+					<p>
+						<a href="{{exercise.link}}">{{exercise.name}}</a>
+					</p>
 				{{/plan.planList}}
 			</td>
 		</tr>
@@ -131,6 +133,28 @@
 			})
 		}
 	
+	function execute_plan(pdno) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/updateajax",
+			type : "get",
+			data : {"pdno": pdno},
+			success : function(json) {
+				console.log(json);
+			}
+		})
+	}
+	
+	function remove_plan(pdno) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/calendar/removeajax",
+			type : "get",
+			data : {"pdno": pdno},
+			success : function(json) {
+				console.log(json);
+			}
+		})
+	}                     
+	
 	$(function(){
 		var date = new Date(${map.today.time});
 		day(date.getFullYear(), date.getMonth(), date.getDate() );
@@ -147,12 +171,24 @@
 			getPlanList();
 		})
 		
-		getExerciseList();
-		getPlanList();
-		
 		$("#part").on("change", function(){
 			getExerciseList();
 		})
+		
+		$(document).on("click", ".execute_pl", function(){
+			var pdno = $(this).val();
+			execute_plan(pdno);
+			
+		})
+		
+		$(document).on("click", ".del_pl", function(){
+			var pdno = $(this).val();
+			remove_plan(pdno);
+			$(this).parent().parent().remove();
+		})
+		
+		getExerciseList();
+		getPlanList();
 	})
 	
 </script>
@@ -175,26 +211,11 @@
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; font-size: 25px"><fmt:formatDate value="${map.today }" pattern="yyyy-MM-dd"/></th>
 				<th><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
 				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
 			</tr>
 		</thead>
 		<tbody id="cal_tbody">
-			<%-- <c:forEach var="plan" items="${map.plan }">
-				<tr>
-					<td>
-						<a href="javascript:void(0)" onclick="get_plan_info(${plan.pno })">${plan.title }</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<c:forEach var="planList" items="${plan.planList }">
-							<p><a href="${planList.exercise.link }">${planList.exercise.name }</a>${planList.setcnt }개 ${planList.exec }</p>
-						</c:forEach>
-					</td>
-				</tr>
-			</c:forEach> --%>
 		</tbody>
 	</table>	
 </section>                         

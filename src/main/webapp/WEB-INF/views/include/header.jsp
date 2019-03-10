@@ -11,16 +11,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 </head>
-<script>
-	$(function() {
-		
-	})
-</script>
 <body>
 	<header>
 		<div id="banner">
-			<h3>당신과 함께하는 든든한 운동 파트너</h3>
-			<h1>작심삼일</h1>
+			<h3><a href="${pageContext.request.contextPath}">당신과 함께하는 든든한 운동 파트너</a></h3>
+			<h1><a href="${pageContext.request.contextPath}">작심삼일</a></h1>
 		</div>
 		<div id="menu">
 			<ul>
@@ -43,7 +38,7 @@
 				</ul>
 			</li>
 			<c:if test="${login == null }">
-				<li><a href="${pageContext.request.contextPath}/calendar/day">내 일정확인</a>
+				<li><a href="${pageContext.request.contextPath}/user/login">내 일정확인</a>
 				</li>
 				<li><a href="#">내 정보 확인</a>
 					<ul class="submenu">
