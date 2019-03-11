@@ -9,8 +9,7 @@ public class Plan {
 	private List<PlanList> planList;
 	private List<PlanDate> planDate;
 
-	public Plan() {
-	}
+	public Plan() {}
 
 	public Plan(int pno, String title, Member member) {
 		this.pno = pno;

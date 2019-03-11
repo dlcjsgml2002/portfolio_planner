@@ -118,18 +118,18 @@
 				} else {
 					var time = y + "-" + (m + 1) + "-" + num;
 					if(num == d && m == ${map.month} && y == ${map.year}) {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' value='" + num + "'>" + num + "</a>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day?time=" + time + "' value='" + num + "'>" + num + "</a>";
 						table += "<ul>";
 						table += "</ul>";
 						table += "</td>";
 					} else {
-						table += "<td><a href='${pageContext.request.contextPath}/calendar/day' value='" + num + "'>" + num + "</a>";
+						table += "<td><a href='${pageContext.request.contextPath}/calendar/day?time=" + time + "' value='" + num + "'>" + num + "</a>";
 						table += "<ul>";
 						table += "</ul>";
 						table += "</td>";
 					}
 					num++;
-				}
+				}                       
 			}
 			table += "</tr>";
 		}

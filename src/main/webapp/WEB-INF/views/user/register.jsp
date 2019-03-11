@@ -86,6 +86,25 @@
                         <label for="InputEmail">이메일 주소</label>
                         <input type="email" class="form-control" id="InputEmail" name="email" placeholder="이메일 주소를 입력해주세요">
                     </div>
+                    
+                  	<div class="form-group">
+                        <label for="InputEmail">추가 정보</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="InputEmail">나이</label>
+                        <input type="text" class="form-control" id="age" name="age" placeholder="만 나이를 입력해주세요">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="InputEmail">키</label>
+                        <input type="text" class="form-control" id="height" name="height" placeholder="키를 입력해주세요">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="InputEmail">몸무게</label>
+                        <input type="text" class="form-control" id="weight" name="weight" placeholder="몸무게를 입력해주세요">
+                    </div>
 
                     <div class="form-group text-center">
                         <button type="button" id="join-submit" class="btn btn-primary" onclick="joinCheck();">회원가입<i class="fa fa-check spaceLeft"></i>

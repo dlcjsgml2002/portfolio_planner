@@ -11,35 +11,39 @@
 		min-height: 500px;
 	}
 </style>
-<script>
-	
-</script>
-<div id="insert" class="modal fade" role="dialog">
+<div id="update" class="modal fade" role="dialog">
 	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">계획 수정하기</h4>
-					<button type="button" class="btn btn-primary" >운동 추가</button>
+		<form action="update" method="get">
+			<input type="hidden" name="mno" value="${login.mno }">
+			<input type="hidden" name="date" id="t">
+			
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">플랜 수정하기</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<label>플랜 이름</label>
+						<input type="text" name="title" placeholder="운동 계획의 이름을 입력해주세요.">
+					</p>
+					<select id="part">
+						<c:forEach var="list" items="${map.list }">
+							<option value="${list }">${list }</option>
+						</c:forEach>
+					</select>
+					<select id="exercise">
+					</select>
+					<input type="text" id="execnt">분/회 
+					<input type="text" id="setcnt">세트
+					<button type="button" id="plus">추가하기</button>
+					</div>
+					<div id="choose">
+					</div>
+					<input type="submit" class="btn btn-primary" value="등록하기">
+					<input type="reset" class="btn btn-primary" data-dismiss="modal" value="취소하기">
+				</div>
+				<div class="modal-footer">
 			</div>
-			<div class="modal-body">
-				<p>카테고리</p>
-				<select id="part">
-					<c:forEach var="list" items="${map.list }">
-						<option value="${list }">${list }</option>
-					</c:forEach>
-				</select>
-				<select id="exercise">
-					
-				</select>
-				<button>수정하기</button>
-				<input type="date" placeholder="시작일">
-				<input type="date" placeholder="종료일">
-			</div>
-			<div id="choose">
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-		</div>
+		</form>
 	</div>
 </div>

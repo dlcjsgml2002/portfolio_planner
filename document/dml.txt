@@ -25,12 +25,12 @@ values ('전신', '제자리 뛰기', 'https://terms.naver.com/entry.nhn?docId=2
 	('어깨', '래터럴 레이즈 - 덤벨, 벤트 오버 [Lateral Raise - Dumbbell, Bent Over]', 'https://terms.naver.com/entry.nhn?docId=938879&cid=51030&categoryId=51030'),
 	('복부', '레그 레이즈 - 행잉[Leg Raise - Hanging]', 'https://terms.naver.com/entry.nhn?docId=938924&cid=51030&categoryId=51030'),
 	('복부', '리버스 크런치[Reverse Crunch]', 'https://terms.naver.com/entry.nhn?docId=938920&cid=51030&categoryId=51030'),
-	('등', '로우 - 덤벨, 원 암[Row - Dumbbell, One Arm]', 'https://terms.naver.com/entry.nhn?docId=938910&cid=51030&categoryId=51030')
-	('전신' ,'하드 클린[Hard Clean]', 'https://terms.naver.com/entry.nhn?docId=2099787&ref=y&cid=51030&categoryId=51030'),
-	('전신' ,'팔 벌려 뛰기[P.T. JUMP]', 'https://terms.naver.com/entry.nhn?docId=2099792&ref=y&cid=51030&categoryId=51030'),
-	('복부' , '니업 - 시티드[Knee-up - Seated]', 'https://terms.naver.com/entry.nhn?docId=938926&ref=y&cid=51030&categoryId=51030'),
-	('복부' ,'사이드 벤드 - 덤벨[Side Bend - Dumbbell]', 'https://terms.naver.com/entry.nhn?docId=938928&ref=y&cid=51030&categoryId=51030'),
-	('전신' ,'잔발 뛰기[Short Pitch]', 'https://terms.naver.com/entry.nhn?docId=2099789&ref=y&cid=51030&categoryId=51030'),
-	('엉덩이' ,'덩키 킥[Donkey kick]', 'https://terms.naver.com/entry.nhn?docId=2099776&cid=51030&categoryId=51030'),
-	('허벅지 앞' ,'스쿼트 - 덤벨[Squat - Dumbbell]', 'https://terms.naver.com/entry.nhn?docId=938934&cid=51030&categoryId=51030'),
-	('전신' ,'버피 테스트[Burpee Test]', 'https://terms.naver.com/entry.nhn?docId=2099791&cid=51030&categoryId=51030');
+	('등', '로우 - 덤벨, 원 암[Row - Dumbbell, One Arm]', 'https://terms.naver.com/entry.nhn?docId=938910&cid=51030&categoryId=51030'),
+	('전신', '하드 클린[Hard Clean]', 'https://terms.naver.com/entry.nhn?docId=2099787&ref=y&cid=51030&categoryId=51030'),
+	('전신', '팔 벌려 뛰기[P.T. JUMP]', 'https://terms.naver.com/entry.nhn?docId=2099792&ref=y&cid=51030&categoryId=51030'),
+	('복부', '니업 - 시티드[Knee-up - Seated]', 'https://terms.naver.com/entry.nhn?docId=938926&ref=y&cid=51030&categoryId=51030'),
+	('복부', '사이드 벤드 - 덤벨[Side Bend - Dumbbell]', 'https://terms.naver.com/entry.nhn?docId=938928&ref=y&cid=51030&categoryId=51030'),
+	('전신', '잔발 뛰기[Short Pitch]', 'https://terms.naver.com/entry.nhn?docId=2099789&ref=y&cid=51030&categoryId=51030'),
+	('엉덩이', '덩키 킥[Donkey kick]', 'https://terms.naver.com/entry.nhn?docId=2099776&cid=51030&categoryId=51030'),
+	('허벅지 앞', '스쿼트 - 덤벨[Squat - Dumbbell]', 'https://terms.naver.com/entry.nhn?docId=938934&cid=51030&categoryId=51030'),
+	('전신', '버피 테스트[Burpee Test]', 'https://terms.naver.com/entry.nhn?docId=2099791&cid=51030&categoryId=51030');

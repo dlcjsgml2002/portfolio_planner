@@ -1,18 +1,26 @@
 package com.yi.domain;
 
 public class PlanList {
+	private int execnt;
 	private int setcnt;
-	private boolean exec;
 	private Plan plan;
 	private Exercise exercise;
 
 	public PlanList() {}
 
-	public PlanList(int setcnt, boolean exec, Plan plan, Exercise exercise) {
+	public PlanList(int execnt, int setcnt, Plan plan, Exercise exercise) {
+		this.execnt = execnt;
 		this.setcnt = setcnt;
-		this.exec = exec;
 		this.plan = plan;
 		this.exercise = exercise;
+	}
+
+	public int getExecnt() {
+		return execnt;
+	}
+
+	public void setExecnt(int execnt) {
+		this.execnt = execnt;
 	}
 
 	public int getSetcnt() {
@@ -21,14 +29,6 @@ public class PlanList {
 
 	public void setSetcnt(int setcnt) {
 		this.setcnt = setcnt;
-	}
-
-	public boolean isExec() {
-		return exec;
-	}
-
-	public void setExec(boolean exec) {
-		this.exec = exec;
 	}
 
 	public Plan getPlan() {
@@ -49,7 +49,7 @@ public class PlanList {
 
 	@Override
 	public String toString() {
-		return String.format("List [setcnt=%s, exec=%s, plan=%s, exercise=%s]", setcnt, exec, plan, exercise);
+		return String.format("PlanList [execnt=%s, setcnt=%s, plan=%s, exercise=%s]", execnt, setcnt, plan, exercise);
 	}
 
 }

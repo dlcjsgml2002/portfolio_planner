@@ -5,17 +5,27 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class PlanDate {
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private int pdno;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date appDate;
-	private boolean exec;
+	private boolean execute;
 	private Plan plan;
 
 	public PlanDate() {}
 
-	public PlanDate(Date appDate, boolean exec, Plan plan) {
+	public PlanDate(int pdno, Date appDate, boolean execute, Plan plan) {
+		this.pdno = pdno;
 		this.appDate = appDate;
-		this.exec = exec;
+		this.execute = execute;
 		this.plan = plan;
+	}
+
+	public int getPdno() {
+		return pdno;
+	}
+
+	public void setPdno(int pdno) {
+		this.pdno = pdno;
 	}
 
 	public Date getAppDate() {
@@ -26,12 +36,12 @@ public class PlanDate {
 		this.appDate = appDate;
 	}
 
-	public boolean isExec() {
-		return exec;
+	public boolean isExecute() {
+		return execute;
 	}
 
-	public void setExec(boolean exec) {
-		this.exec = exec;
+	public void setExecute(boolean execute) {
+		this.execute = execute;
 	}
 
 	public Plan getPlan() {
@@ -44,7 +54,7 @@ public class PlanDate {
 
 	@Override
 	public String toString() {
-		return String.format("PlanDate [appDate=%s, exec=%s, plan=%s]", appDate, exec, plan);
+		return String.format("PlanDate [pdno=%s, appDate=%s, execute=%s, plan=%s]", pdno, appDate, execute, plan);
 	}
 
 }
