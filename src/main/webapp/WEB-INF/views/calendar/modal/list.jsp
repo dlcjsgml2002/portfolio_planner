@@ -67,7 +67,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">${login.name }님의 계획 목록</h4>
-				<button type="button" class="btn btn-primary" onclick="insert_plan()">플랜 추가</button>
+				<button type="button" class="btn btn-primary" onclick="insert_plan()">플랜 등록</button>
+				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/plan/list'">플랜 관리</button>
 			</div>
 			<div class="modal-body">
 				<c:forEach var="list" items="${map.plan }">
@@ -75,8 +76,6 @@
 						<a>${list.pno }</a>
 						<a>${list.title }</a>
 						<button class="btn_plan_insert" value="${list.pno }">추가하기</button>
-						<button class="btn_plan_update" value="${list.pno }" onclick="update_plan()">수정하기</button>
-						<button class="btn_plan_delete" value="${list.pno }" onclick="delete_plan()">삭제하기</button>
 					</p>
 				</c:forEach>
 			</div>

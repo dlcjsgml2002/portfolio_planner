@@ -95,4 +95,16 @@ public class PlanServiceImpl implements PlanService {
 		return planDao.selectPlanDate(pdno);
 	}
 
+	@Override
+	public void removePlanList(int pno) {
+		// TODO Auto-generated method stub
+		planDao.removePlanList(pno);
+	}
+
+	@Override
+	public void removePlanDate(int pno) {
+		// TODO Auto-generated method stub
+		planDao.removePlanDate(pno);
+	}
+
 }

@@ -108,4 +108,16 @@ public class PlanDaoImpl implements PlanDao {
 		return sqlSession.selectOne(namespace + ".selectPlanDate", pdno);
 	}
 
+	@Override
+	public void removePlanList(int pno) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace + ".deletePlanList", pno);
+	}
+
+	@Override
+	public void removePlanDate(int pno) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace + ".removePlanDate", pno);
+	}
+
 }

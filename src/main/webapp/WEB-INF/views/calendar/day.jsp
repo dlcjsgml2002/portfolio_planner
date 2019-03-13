@@ -224,5 +224,4 @@
 </section>                         
 <%@ include file="../calendar/modal/list.jsp"%>
 <%@ include file="../calendar/modal/insert.jsp"%>
-<%@ include file="../calendar/modal/update.jsp"%>
 <%@ include file="../include/footer.jsp"%>

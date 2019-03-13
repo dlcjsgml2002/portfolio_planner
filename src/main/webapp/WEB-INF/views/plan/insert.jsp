@@ -1,20 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-	.modal-dialog {
-	    max-width: 1400px;
-	    margin: 1.75rem auto;
-	}
-	
-	.modal-body{
-		min-height: 500px;
-	}
-</style>
+<%@ include file="../include/header.jsp"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="template1" type="text/x-handlebars-template">
+	{{#each.}}
+		<option value="{{eno}}">{{name}}</option>
+	{{/each}}
+</script>
 <script>
+	function getExerciseList() {
+		var part = $("#part").val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/plan/exercise_ajax",
+			type : "get",
+			data : {"part": part},
+			dataType : "json",
+			success : function(json) {
+				console.log(json);
+				
+				$("#exercise").empty();
+				
+				var source = $("#template1").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				
+				$("#exercise").append(result);
+				}
+			})
+		}
+
 	$(function(){
 		$("#plus").on("click", function(){
 			console.log($("#exercise").val());
+			
 			var choose = $("<div>").attr("class","choose");
 			var info = "<p>" + $("#exercise option:selected").text() + " " +  $("#setcnt").val() + "분/회  " + $("#setcnt").val() + "세트";
 			info += "<button type='button' class='remove'>빼기</button></p>";
@@ -31,18 +50,22 @@
 			
 			$("#execnt").val("");
 			$("#setcnt").val("");
-			
-			getPlanList();
+		})
+		
+		$("#part").on("change", function(){
+			getExerciseList();
 		})
 		
 		$(document).on("click", ".remove", function(){
 			$(this).parent().parent().remove();                               
 		})
+		
+		getExerciseList();
 	})
 </script>
-<div id="insert" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<form action="insert" method="post">
+
+<section>
+	<form action="insert" method="post">
 			<input type="hidden" name="mno" value="${login.mno }">
 			<input type="hidden" name="date" id="t">
 			
@@ -74,5 +97,5 @@
 				<div class="modal-footer">
 			</div>
 		</form>
-	</div>
-</div>
+</section>
+<%@ include file="../include/footer.jsp"%>

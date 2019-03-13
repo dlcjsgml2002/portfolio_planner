@@ -55,13 +55,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="info", method = RequestMethod.GET)
-	public void infoGet() {
+	public void infoGet(Model model, int mno) {
 		logger.info("info get ----------");
-	}
-	
-	@RequestMapping(value="health", method = RequestMethod.GET)
-	public void healthGet() {
-		logger.info("health get ----------");
+		
+		Member member = service.selectByMno(mno);
+		
+		model.addAttribute("member", member);
 	}
 	
 	@RequestMapping(value="register", method = RequestMethod.GET)

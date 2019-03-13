@@ -72,10 +72,13 @@ public class BoardController {
 		for (MultipartFile file : imageFiles) {
 			logger.info("file name : " + file.getOriginalFilename());
 			logger.info("file size : " + file.getSize());
+			
+			if (file.getSize() != 0 || !file.getOriginalFilename().equals("")) {
+				String thumbPath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 
-			String thumbPath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				files.add(thumbPath);
+			}
 
-			files.add(thumbPath);
 		}
 		board.setFiles(files);
 

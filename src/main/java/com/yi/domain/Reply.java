@@ -8,19 +8,22 @@ public class Reply {
 	private int rno;
 	private String content;
 	private String writer;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date regdate;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moddate;
+	private Board board;
 
 	public Reply() {}
 
-	public Reply(int rno, String content, String writer, Date regdate, Date moddate) {
+	public Reply(int rno, String content, String writer, Date regdate, Date moddate, Board board) {
+		super();
 		this.rno = rno;
 		this.content = content;
 		this.writer = writer;
 		this.regdate = regdate;
 		this.moddate = moddate;
+		this.board = board;
 	}
 
 	public int getRno() {
@@ -63,10 +66,18 @@ public class Reply {
 		this.moddate = moddate;
 	}
 
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Reply [rno=%s, content=%s, writer=%s, regdate=%s, moddate=%s]", rno, content, writer,
-				regdate, moddate);
+		return String.format("Reply [rno=%s, content=%s, writer=%s, regdate=%s, moddate=%s, board=%s]", rno, content,
+				writer, regdate, moddate, board);
 	}
 
 }

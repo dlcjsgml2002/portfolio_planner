@@ -78,8 +78,8 @@
 	
 	<delete id="deletePlanList">
 		delete
-		from planlist
-		where pno = #{pno} and eno = #{eno}
+		from plan_list
+		where pno = #{pno}
 	</delete>
 	
 	<select id="selectPlanListByPno" resultMap="PlanListResult">
@@ -132,6 +132,12 @@
 		delete
 		from plan_date
 		where pdno = #{pdno};
+	</delete>
+	
+	<delete id="removePlanDate">
+		delete
+		from plan_date
+		where pno = #{pno};
 	</delete>
 	
 </mapper>

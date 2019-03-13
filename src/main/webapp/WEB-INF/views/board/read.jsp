@@ -125,10 +125,10 @@
 		<i class="fa fa-clock-o"></i>{{tempdate regdate}}
 	</span>
 	<h3 class="timeline-header">
-		<strong>{{rno}}</strong> - {{replyer}}
+		<strong>{{rno}}</strong> - {{writer}}
 	</h3>
 	<div class="timeline-body">
-		{{replytext}}
+		{{content}}
 	</div>
 	<div class="timeline-footer">
 		<a class="btn btn-primary btn-xs btnModify" data-toggle="modal" data-target="#modifyModal">
@@ -143,7 +143,7 @@
 <script>
 	$(function() {
 		$("#btnList").click(function() {
-			location.href = "${pageContext.request.contextPath}/sboard/list";
+			location.href = "${pageContext.request.contextPath}/board/list";
 			$("#f1").attr("action", "list");
 			$("#f1").attr("method", "get");
 			$("#f1").submit();
@@ -173,7 +173,7 @@
 		return year + "/" + month + "/" + day;
 	});
 
-	var bno = ${ boardVO.bno };
+	var bno = ${ board.bno };
 	function getPageList(page) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/replies/" + bno + "/" + page,
@@ -209,12 +209,12 @@
 		getPageList(1);
 
 		$("#btnReplyAdd").click(function() {
-			var replyer = $("#newReplyWriter").val();
-			var replytext = $("#newReplyText").val();
+			var writer = $("#newReplyWriter").val();
+			var content = $("#newReplyText").val();
 			var jsonBody = {
 				bno : bno,
-				replyer : replyer,
-				replytext : replytext
+				writer : writer,
+				content : content
 			};
 
 			//@RequestBody, header, JSON.stringify
@@ -242,7 +242,7 @@
 		$(document).on("click", ".btnDelete", function() {
 			var rno = $(this).parents(".replyLi").attr("data-rno");
 			var jsonBody = {
-				replytext : replytext
+				content : content
 			};
 			$.ajax({
 				url : "${pageContext.request.contextPath}/replies/" + rno,
@@ -267,9 +267,9 @@
 
 		$("#btnModify").click(function() {
 			var rno = $(this).parents(".replyLi").attr("data-rno");
-			var replytext = $("#replytext").val();
+			var content = $("#replytext").val();
 			var jsonBody = {
-				replytext : replytext
+				content : content
 			};
 			$.ajax({
 				url : "${pageContext.request.contextPath}/replies/" + rno,
