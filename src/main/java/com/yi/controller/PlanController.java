@@ -1,14 +1,11 @@
 package com.yi.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,129 +13,60 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.Exercise;
+import com.yi.domain.Login;
 import com.yi.domain.Plan;
-import com.yi.domain.PlanDate;
 import com.yi.domain.PlanList;
 import com.yi.service.ExerciseService;
-import com.yi.service.MemberService;
 import com.yi.service.PlanService;
 
 @Controller
-@RequestMapping("/calendar/")
+@RequestMapping("/plan/")
 public class PlanController {
-
-	@Autowired
-	private ExerciseService exerciseService;
+	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
 
 	@Autowired
 	private PlanService planService;
-
+	
 	@Autowired
-	private MemberService memberService;
+	private ExerciseService exerciseService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	@ResponseBody
-	public void listGet(@RequestParam int pno, Model model, int mno) {
-		List<Plan> list = planService.selectByAll(1);
-		Map<String, Object> map = new HashMap<>();
-		System.out.println(list);
+	public String listGet(Model model, HttpSession session) {
+		logger.info("list Get");
 
-		map.put("list", list);
+		Login login = (Login) session.getAttribute("login");
+		int mno = login.getMno();
+		List<Plan> plan = planService.selectByAll(mno);
+		System.out.println(plan);
 
-		model.addAttribute("map", map);
+		model.addAttribute("plan", plan);
+
+		return "/plan/list";
 	}
+	
+	@RequestMapping(value = "read", method = RequestMethod.GET)
+	public String readGet(Model model, HttpSession session, int pno) {
+		logger.info("list Get");
+		
+		Plan plan = planService.selectByPno(pno);
+		System.out.println("plan : " + plan);
+		
+		List<PlanList> planList = planService.selectPlanListByPno(pno);
+		plan.setPlanList(planList);
+		System.out.println("planList : " + planList);
+		
+		model.addAttribute("plan", plan);
 
+		return "/plan/read";
+	}
+	
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	@ResponseBody
-	public Plan insertGet(@RequestParam int pno) {
-		Plan plan = planService.selectByPno(pno);
-		List<String> list = exerciseService.selectPartByPart();
-		Map<String, Object> map = new HashMap<>();
+	public String insertGet(Model model, HttpSession session) {
+		logger.info("list Get");
 
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
-	}
-
-	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String insertPost(HttpSession session, int mno, String title, int[] eno, int[] execnt, int[] setcnt,
-			Date date) {
-		Plan plan = new Plan();
-		plan.setTitle(title);
-		plan.setMember(memberService.selectByMno(mno));
-		planService.insert(plan);
-
-		for (int i = 0; i < eno.length; i++) {
-			PlanList planList = new PlanList();
-			planList.setPlan(plan);
-			planList.setExercise(exerciseService.selectByEno(eno[i]));
-			planList.setExecnt(execnt[i]);
-			planList.setSetcnt(setcnt[i]);
-			planService.insertPlanList(planList);
-		}
-
-		PlanDate planDate = new PlanDate();
-		planDate.setPlan(plan);
-		planDate.setAppDate(date);
-		planService.insertPlanDate(planDate);
-
-		return "redirect:/calendar/day";
-	}
-
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	@ResponseBody
-	public Plan updateGet(@RequestParam int pno) {
-		Plan plan = planService.selectByPno(pno);
-		List<String> list = exerciseService.selectPartByPart();
-		Map<String, Object> map = new HashMap<>();
-
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
-	}
-
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	@ResponseBody
-	public Plan updatePost(@RequestParam int pno) {
-		List<String> list = exerciseService.selectPartByPart();
-		Plan plan = planService.selectByPno(pno);
-		Map<String, Object> map = new HashMap<>();
-
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
-	}
-
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	@ResponseBody
-	public Plan deleteGet(@RequestParam int pno) {
-		Plan plan = planService.selectByPno(pno);
-		List<String> list = exerciseService.selectPartByPart();
-		Map<String, Object> map = new HashMap<>();
-
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
-	}
-
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	@ResponseBody
-	public Plan deletePost(@RequestParam int pno) {
-		List<String> list = exerciseService.selectPartByPart();
-		Plan plan = planService.selectByPno(pno);
-		Map<String, Object> map = new HashMap<>();
-
-		map.put("list", list);
-		map.put("plan", plan);
-
-		return plan;
+		return "/plan/insert";
 	}
 
 }

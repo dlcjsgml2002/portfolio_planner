@@ -19,24 +19,32 @@
 <script>
 	$(document).ready(function() {
 		$('.slider').bxSlider();
+	
+		$('#slider_form').bxSlider({
+			captions: true,
+			auto : true,
+			autoControls : true,
+			stopAutoOnClick : true,
+			pager : true,
+			slideWidth : 600,
+			pause: 10000
+		});
 	});
 </script>
 <section>
 	<div id="slider_form">
-		<div class="slider">
-			<div>
-				<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-				<p>1</p>
-			</div>
-		    <div>
-		    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-				<p>2</p>
-		    </div>
-		    <div>
-		    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-				<p>3</p>
-		    </div>
+		<div>
+			<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+			<p>1</p>
 		</div>
+	    <div>
+	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+			<p>2</p>
+	    </div>
+	    <div>
+	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
+			<p>3</p>
+	    </div>
 	</div>
 </section>
 <%@ include file="include/footer.jsp"%>

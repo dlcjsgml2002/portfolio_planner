@@ -1,41 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-	.modal-dialog {
-	    max-width: 1400px;
-	    margin: 1.75rem auto;
-	}
-	
-	.modal-body{
-		min-height: 500px;
-	}
-</style>
-<script>
-	$(function(){
-		$("#plus").on("click", function(){
-			console.log($("#exercise").val());
-			
-			var info = "<p>" + $("#exercise option:selected").text() + " " +  $("#setcnt").val() + "분/회  " + $("#setcnt").val() + "세트</p>"
-			var eno = "<input type='text' name='eno' value='" + $("#exercise").val() + "' hidden>";
-			var execnt = "<input type='hidden' name='execnt' value='" + $("#execnt").val() + "'>";
-			var setcnt = "<input type='hidden' name='setcnt' value='" + $("#setcnt").val() + "'>";
-			
-			$("#choose").append(info);
-			$("#choose").append(eno);
-			$("#choose").append(execnt);
-			$("#choose").append(setcnt);
-			
-			$("#execnt").val("");
-			$("#setcnt").val("");
-			
-			getPlanList();
-		})
-	})
-</script>
-<div id="insert" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<form action="insert" method="post">
+<section>
+	<form action="insert" method="post">
 			<input type="hidden" name="mno" value="${login.mno }">
 			<input type="hidden" name="date" id="t">
 			
@@ -67,5 +34,5 @@
 				<div class="modal-footer">
 			</div>
 		</form>
-	</div>
-</div>
+</section>
+<%@ include file="../include/footer.jsp"%>

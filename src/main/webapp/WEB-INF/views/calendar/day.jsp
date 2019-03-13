@@ -51,7 +51,7 @@
 				<button class="del_pl" value="{{pdno}}">빼기</button></p>
 				{{#plan.planList}}
 					<p>
-						<a href="{{exercise.link}}">{{exercise.name}}</a>
+						<a href="{{exercise.link}}">{{exercise.name}}</a> {{execnt}}회/분 {{setcnt}}세트
 					</p>
 				{{/plan.planList}}
 			</td>
@@ -140,6 +140,8 @@
 			data : {"pdno": pdno},
 			success : function(json) {
 				console.log(json);
+
+				getPlanList();
 			}
 		})
 	}
@@ -151,6 +153,8 @@
 			data : {"pdno": pdno},
 			success : function(json) {
 				console.log(json);
+
+				getPlanList();
 			}
 		})
 	}                     
@@ -178,13 +182,11 @@
 		$(document).on("click", ".execute_pl", function(){
 			var pdno = $(this).val();
 			execute_plan(pdno);
-			
 		})
 		
 		$(document).on("click", ".del_pl", function(){
 			var pdno = $(this).val();
 			remove_plan(pdno);
-			$(this).parent().parent().remove();
 		})
 		
 		getExerciseList();
@@ -193,6 +195,7 @@
 	
 </script>
 <section>
+	<input type="hidden" name="today" value="${today }">
 	<div id="calendar_menu">
 		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
 		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
@@ -221,5 +224,4 @@
 </section>                         
 <%@ include file="../calendar/modal/list.jsp"%>
 <%@ include file="../calendar/modal/insert.jsp"%>
-<%@ include file="../calendar/modal/update.jsp"%>
 <%@ include file="../include/footer.jsp"%>

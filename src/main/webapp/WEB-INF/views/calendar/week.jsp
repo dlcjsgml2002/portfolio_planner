@@ -101,8 +101,9 @@
 		for (var i = 0; i < day; i++) {
 			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 			today.setDate(today.getDate() - (day - i));
+			var time = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 			table += "<td>";
-			table += "<a href='' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
+			table += "<a href='${pageContext.request.contextPath}/calendar/day?time=" + time + "' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
 			table += "<ul></ul>";
 			table += "</td>";
 			today = date;
@@ -111,8 +112,9 @@
 		for (var i = day; i < 7; i++) {
 			var date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 			today.setDate(today.getDate() - (day - i));
+			var time = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 			table += "<td>";
-			table += "<a href='' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
+			table += "<a href='${pageContext.request.contextPath}/calendar/day?time=" + time + "' value='" + (today.getDate()) + "'>" + (today.getDate()) + "</a>";
 			table += "<ul></ul>";
 			table += "</td>";
 			today = date;

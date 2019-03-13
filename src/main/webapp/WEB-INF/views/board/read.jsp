@@ -7,6 +7,10 @@
 		width: 100px;
 		float: left;
 	}
+	
+	textarea {
+		resize: none;
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <section class="container">
