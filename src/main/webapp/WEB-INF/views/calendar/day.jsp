@@ -4,36 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-	section {
-		margin: 10px auto;
-		width: 80%;
-		height: 760px;
+	table {
+		margin: 0 auto;
+		width: 1000px;
 	}
 	
-	#calendar_table tbody tr:first-child td {
-		
-	}
-	
-	#calendar_table tbody tr td {
-		padding: 10px;
-		border: 1px solid #ddd;
-	}
-	
-	#calendar_menu {
+	.btn-group {
 		float: right;
+		margin-bottom: 20px;
 	}
 	
-	#calendar_menu a {
-		border: 1px solid black;
-	}
-	
-	.plan_item_div {
-		color: #424242;
-		position: relative;
-		display: block;
-		padding: 10px 15px;
-		margin-bottom: -1px;
-		background-color: #fff;
+	button {
+		width: 130px;
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -46,9 +28,13 @@
 	{{#each.}}
 		<tr>
 			<td>
-				<p>{{plan.title}}
-				<button class="execute_pl" value="{{pdno}}">{{execute}}</button>
-				<button class="del_pl" value="{{pdno}}">빼기</button></p>
+				{{plan.title}}
+			</td>
+			<td><button class="execute_pl btn btn-success" value="{{pdno}}">{{execute}}</button></td>
+			<td><button class="del_pl btn btn-danger" value="{{pdno}}">빼기</button></td>
+		</tr>
+		<tr>
+			<td>
 				{{#plan.planList}}
 					<p>
 						<a href="{{exercise.link}}">{{exercise.name}}</a> {{execnt}}회/분 {{setcnt}}세트
@@ -63,7 +49,7 @@
 	
 	function day(y, m, d) {
 		today = new Date(y, m, d);
-		var cale = "<th><a href='#' id='prev'>&lt;</a>" + y + "년 " + (m + 1) + "월" + d + "일<a href='#' id='next'>&gt;</a></th>";
+		var cale = "<h3><a href='#' id='prev'>&lt;</a> " + y + "년 " + (m + 1) + "월" + d + "일 <a href='#' id='next'>&gt;</a><h3>";
 		
 		$("#cale").html(cale);
 	}
@@ -196,26 +182,18 @@
 </script>
 <section>
 	<input type="hidden" name="today" value="${today }">
-	<div id="calendar_menu">
-		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
-		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/month?mno=${login.mno }">Month</a>
+	<div class="btn-group" role="group">
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/day?mno=${login.mno }'" class="btn btn-secondary">일</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/week?mno=${login.mno }'" class="btn btn-secondary">주</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/month?mno=${login.mno }'" class="btn btn-secondary">월</button>
 	</div>
 	
 	<table class="table" id="calendar_table">
-		<colgroup>
-			<col width="25%">
-			<col width="5%">
-		</colgroup>
-	
-		<thead>
-			<tr id="cale">
-				
-			</tr>
-			
+		<thead class="thead-dark">
 			<tr>
-				<th><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
-				<th><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
+				<th id="cale"  style="width: 60%"></th>
+				<th  style="width: 20%"><button class="btn btn-primary" onclick="insert_plan()">계획 추가하기</button></th>
+				<th  style="width: 20%"><button class="btn btn-primary" onclick="add_plan()">계획 불러오기</button></th>
 			</tr>
 		</thead>
 		<tbody id="cal_tbody">

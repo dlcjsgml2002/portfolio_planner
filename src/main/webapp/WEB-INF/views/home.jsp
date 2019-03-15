@@ -5,14 +5,17 @@
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <style>
+	section {
+		padding-left: 15%;
+	}
 	#slider_form {
 		margin: 10% auto;
 		width: 80%;
 	}
 	
-	.slider img {
+	#slider_form img {
 		width: 100%;
-		height: 400px;
+		height: 100%;
 	}
 </style>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -23,27 +26,21 @@
 		$('#slider_form').bxSlider({
 			captions: true,
 			auto : true,
-			autoControls : true,
-			stopAutoOnClick : true,
-			pager : true,
-			slideWidth : 600,
-			pause: 10000
+			slideWidth : 800,
+			pause: 5000
 		});
 	});
 </script>
 <section>
 	<div id="slider_form">
 		<div>
-			<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-			<p>1</p>
+			<img alt="" src="${pageContext.request.contextPath }/resources/images/1.jpg">
 		</div>
 	    <div>
-	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-			<p>2</p>
+	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/2.jpg">
 	    </div>
 	    <div>
-	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/test.jpg">
-			<p>3</p>
+	    	<img alt="" src="${pageContext.request.contextPath }/resources/images/3.jpg">
 	    </div>
 	</div>
 </section>

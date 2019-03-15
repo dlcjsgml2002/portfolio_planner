@@ -110,7 +110,7 @@
                         <button type="button" id="join-submit" class="btn btn-primary" onclick="joinCheck();">회원가입<i class="fa fa-check spaceLeft"></i>
                         </button>
                         
-                        <button type="submit" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i>
+                        <button type="reset" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i>
                         </button>
                     </div>
                 </form>

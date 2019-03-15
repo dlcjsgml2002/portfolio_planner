@@ -36,4 +36,8 @@ public interface PlanService {
 
 	public PlanDate selectPlanDate(int pdno);
 
+	public void removePlanList(int pno);
+
+	public void removePlanDate(int pno);
+
 }

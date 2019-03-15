@@ -5,17 +5,25 @@
 <%@ include file="../include/header.jsp"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-	#page ul li {
-		float: left;
-	}
-	.box-body {
-		clear: both;
-	}
 </style>
 <section>
+	<div class="box-body">
+		<select name="searchType">
+			<option value="n">---</option>
+			<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>Title</option>
+			<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>Content</option>
+			<option value="w" ${cri.searchType == 'w' ? 'selected' : '' }>Writer</option>
+			<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>Title or Content</option>
+			<option value="cw" ${cri.searchType == 'cw' ? 'selected' : '' }>Content or Winter</option>
+			<option value="tcw" ${cri.searchType == 'tcw' ? 'selected' : '' }>Title of Content or Writer</option>
+		</select>
+		<input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
+		<button id="btnSearch">Search</button>
+		<button id="btnNewBoard">New Board</button>
+	</div>
 	<div>
-		<table>
-			<thead>
+		<table class="table table-hover table-bordered">
+			<thead class="thead-dark">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -40,8 +48,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div id="page">
-			<ul>
+		<div id="page" class="text-center">                
+			<ul class="pagination">
 				<c:if test="${pageMaker.prev }">
 					<li><a href="${pageContext.request.contextPath }/board/list?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 				</c:if>
@@ -56,20 +64,6 @@
 				</c:if>
 			</ul>
 		</div>
-	</div>
-	<div class="box-body">
-		<select name="searchType">
-			<option value="n">---</option>
-			<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>Title</option>
-			<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>Content</option>
-			<option value="w" ${cri.searchType == 'w' ? 'selected' : '' }>Writer</option>
-			<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>Title or Content</option>
-			<option value="cw" ${cri.searchType == 'cw' ? 'selected' : '' }>Content or Winter</option>
-			<option value="tcw" ${cri.searchType == 'tcw' ? 'selected' : '' }>Title of Content or Writer</option>
-		</select>
-		<input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
-		<button id="btnSearch">Search</button>
-		<button id="btnNewBoard">New Board</button>
 	</div>
 </section>
 <script>

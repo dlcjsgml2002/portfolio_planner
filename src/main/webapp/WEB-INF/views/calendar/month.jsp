@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 	section {
-		margin: 10px auto;
+		margin: 100px auto;
 		width: 80%;
 		height: 760px;
 	}
@@ -13,7 +13,6 @@
 	table {
 		margin: 10px auto;
 		width: 100%;
-		border-collapse: collapse;
 	}
 	
 	th:first-child, td:first-child a {
@@ -31,8 +30,20 @@
 
 	th, td {
 		width: 100px;
-		height: 100px;
+		
 		border: 1px solid black;
+	}
+	
+	th {
+		height: 50px;
+		text-align: center;
+	}
+	
+	td {
+		height: 100px;
+		padding-top: 2px;
+		padding-left: 2px;
+		vertical-align: top;
 	}
 	
 	#calendar_menu {
@@ -42,7 +53,20 @@
 	#calendar_menu a {
 		border: 1px solid black;
 	}
-</style>
+	
+	.btn-group {
+		float: right;
+		margin-bottom: 20px;
+	}
+	
+	button {
+		width: 130px;
+	}
+	
+	span {
+		color: black;
+	}
+</style>                                                                          
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script id="template1" type="text/x-handlebars-template">
 	<li>{{title}}</li>
@@ -97,7 +121,7 @@
 		var num = 1;
 		
 		table += "<table>"
-		table += "<caption><a href='#' id='prev'>&lt;</a>" + y + "년 " + (m + 1) + "월<a href='#' id='next'>&gt;</a></caption>";
+		table += "<thead class='thead-dark'><tr><th colspan='7'><h3><a href='#' id='prev'>&lt;</a><span> " + y + "년 " + (m + 1) + "월 </span><a href='#' id='next'>&gt;</a></h3></th></tr></thead>";
 		table += "<tr>";
 		table += "<th>일</th>";
 		table += "<th>월</th>";
@@ -158,10 +182,10 @@
 	})
 </script>
 <section>
-	<div id="calendar_menu">
-		<a href="${pageContext.request.contextPath}/calendar/day?mno=${login.mno }">Day</a>
-		<a href="${pageContext.request.contextPath}/calendar/week?mno=${login.mno }">Week</a>
-		<a href="${pageContext.request.contextPath}/calendar/month?mno=${login.mno }">Month</a>
+	<div class="btn-group" role="group">
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/day?mno=${login.mno }'" class="btn btn-secondary">일</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/week?mno=${login.mno }'" class="btn btn-secondary">주</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/calendar/month?mno=${login.mno }'" class="btn btn-secondary">월</button>
 	</div>
 	<div id="calendar">
 		

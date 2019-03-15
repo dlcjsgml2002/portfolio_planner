@@ -35,5 +35,9 @@ public interface PlanDao {
 	public void deletePlanDate(PlanDate planDate);
 	
 	public PlanDate selectPlanDate(int pdno);
+	
+	public void removePlanList(int pno);
+	
+	public void removePlanDate(int pno);
 
 }

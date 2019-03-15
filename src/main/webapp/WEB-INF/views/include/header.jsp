@@ -72,7 +72,7 @@
 				<li>
 					<a href="">내 정보 확인</a>
 					<ul class="submenu">
-						<li><a href="${pageContext.request.contextPath}/user/info">내 정보관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/info?mno=${login.mno }">내 정보관리</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/health">내 운동관리</a></li>
 					</ul>
 				</li>

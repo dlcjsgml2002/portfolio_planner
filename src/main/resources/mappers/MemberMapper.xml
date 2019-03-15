@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.MemberMapper">
 	<insert id="insert">
-		insert into member (id, pw, name, email, admin)
-		values (#{id}, #{pw}, #{name}, #{email}, #{admin})
+		insert into member (id, pw, name, email, admin, age, gender, height, weight)
+		values (#{id}, #{pw}, #{name}, #{email}, #{admin}, #{age}, #{gender}, #{height}, #{weight})
 	</insert>
 
 	<select id="read" resultType="Member">
@@ -19,7 +19,10 @@
 		set	pw = #{pw},
 			name = #{name},
 			email = #{email},
-			admin = #{admin}
+			age = #{age},
+			gender = #{gender},
+			height = #{height},
+			weight = #{weight}
 		where id = #{id}
 	</update>
 	
